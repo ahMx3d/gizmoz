@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // ADMIN ROUTES FILE HAS A PREFIX OF 'admin'
 
+############################# START AUTHENTICATION ROUTES #################
 Route::group(
     [
         'namespace' => 'Admin',
@@ -23,15 +24,38 @@ Route::group(
     ],
     function () {
         
-        // ADMIN'S FIRST AUTHENTICATED PAGE
+        // AUTHENTICATED ADMIN'S DASHBOARD
         Route::get(
             '/',
             'DashboardController@index'
         )->name('admin.dashboard');
 
+        ###################### START SETTINGS ROUTES ####################
+        Route::group(
+            [
+                'prefix' => 'settings'
+            ],
+            function () {
+                // EDIT SHIPPING METHODS
+                Route::get(
+                    'shipping-methods/{type}',
+                    'SettingsController@editShippingMethods'
+                )->name('edit.shipping.methods');
+                
+                // UPDATE SHIPPING METHODS
+                Route::put(
+                    'shipping-methods/{id}',
+                    'SettingsController@updateShippingMethods'
+                )->name('update.shipping.methods');
+            }
+        );
+        ###################### END SETTINGS ROUTES ######################
+
     }
 );
+####################### END AUTHENTICATION ROUTES #######################
 
+############################## START GUEST ROUTES #######################
 Route::group(
     [
         'namespace' => 'Admin',
@@ -52,4 +76,4 @@ Route::group(
         )->name('post.admin.login');
     }
 );
-
+############################# END GUEST ROUTES ##########################

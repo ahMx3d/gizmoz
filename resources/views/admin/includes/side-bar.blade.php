@@ -140,15 +140,20 @@
 
 
                      <li class="nav-item">
-                            <a href=""><i class="la la-male"></i>
-                            <span class="menu-title" data-i18n="nav.dash.main">تذاكر المراسلات   </span>
-                            <span
-                                   class="badge badge badge-danger  badge-pill float-right mr-2">0</span>
+                            <a href="">
+                                   <i class="la la-male"></i>
+                                   <span
+                                          class="menu-title"
+                                          data-i18n="nav.dash.main">تذاكر المراسلات</span>
+                                   <span class="badge badge badge-danger badge-pill float-right mr-2">0</span>
                             </a>
                             <ul class="menu-content">
-                            <li class="active"><a class="menu-item" href=""
-                                                        data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
-                            </li>
+                                   <li class="active">
+                                          <a
+                                                 class="menu-item"
+                                                 href=""
+                                                 data-i18n="nav.dash.ecommerce">تذاكر الطلاب</a>
+                                   </li>
                             </ul>
                      </li>
 
@@ -158,34 +163,40 @@
                                    <i class="la la-television"></i>
                                    <span
                                           class="menu-title"
-                                          data-i18n="nav.templates.main">Templates</span>
+                                          data-i18n="nav.templates.main">{{__('admin/sidebar.settings')}}</span>
                             </a>
                             <ul class="menu-content">
                                    <li>
                                           <a
                                                  class="menu-item"
                                                  href="#"
-                                                 data-i18n="nav.templates.vert.main">Vertical</a>
+                                                 data-i18n="nav.templates.vert.main">{{__('admin/sidebar.shipping_methods')}}</a>
 
                                           <ul class="menu-content">
                                                  <li>
                                                         <a
                                                                class="menu-item"
-                                                               href="../vertical-menu-template"
-                                                               data-i18n="nav.templates.vert.classic_menu">Classic Menu</a>
+                                                               {{-- href="../vertical-menu-template" --}}
+                                                               href="{{route('edit.shipping.methods', 'free')}}"
+                                                               {{-- data-i18n="nav.templates.vert.classic_menu">Classic Menu</a> --}}
+                                                               data-i18n="nav.templates.vert.classic_menu">{{__('admin/sidebar.free_shipping')}}</a>
                                                  </li>
                                                  <li>
                                                         <a
                                                                class="menu-item"
-                                                               href="../vertical-modern-menu-template">Modern Menu</a>
+                                                               {{-- href="../vertical-modern-menu-template">Modern Menu</a> --}}
+                                                               {{-- href="../vertical-modern-menu-template" --}}
+                                                               href="{{route('edit.shipping.methods', 'local')}}">{{__('admin/sidebar.local_pickup')}}</a>
                                                  </li>
                                                  <li>
                                                         <a
                                                                class="menu-item"
-                                                               href="../vertical-compact-menu-template"
-                                                               data-i18n="nav.templates.vert.compact_menu">Compact Menu</a>
+                                                               {{-- href="../vertical-compact-menu-template" --}}
+                                                               href="{{route('edit.shipping.methods', 'rate')}}"
+                                                               {{-- data-i18n="nav.templates.vert.compact_menu">Compact Menu</a> --}}
+                                                               data-i18n="nav.templates.vert.compact_menu">{{__('admin/sidebar.flat_rate')}}</a>
                                                  </li>
-                                                 <li>
+                                                 {{-- <li>
                                                         <a
                                                                class="menu-item"
                                                                href="../vertical-content-menu-template"
@@ -196,19 +207,30 @@
                                                                class="menu-item"
                                                                href="../vertical-overlay-menu-template"
                                                                data-i18n="nav.templates.vert.overlay_menu">Overlay Menu</a>
-                                                 </li>
+                                                 </li> --}}
                                           </ul>
                                    </li>
-                            <li><a class="menu-item" href="#" data-i18n="nav.templates.horz.main">Horizontal</a>
-                                   <ul class="menu-content">
-                                          <li><a class="menu-item" href="../horizontal-menu-template"
-                                                 data-i18n="nav.templates.horz.classic">Classic</a>
-                                          </li>
-                                          <li><a class="menu-item" href="../horizontal-menu-template-nav"
-                                                 data-i18n="nav.templates.horz.top_icon">Full Width</a>
-                                          </li>
-                                   </ul>
-                            </li>
+                                   {{-- <li>
+                                          <a
+                                                 class="menu-item"
+                                                 href="#"
+                                                 data-i18n="nav.templates.horz.main">Horizontal</a>
+
+                                          <ul class="menu-content">
+                                                 <li>
+                                                        <a
+                                                               class="menu-item"
+                                                               href="../horizontal-menu-template"
+                                                               data-i18n="nav.templates.horz.classic">Classic</a>
+                                                 </li>
+                                                 <li>
+                                                        <a
+                                                               class="menu-item"
+                                                               href="../horizontal-menu-template-nav"
+                                                               data-i18n="nav.templates.horz.top_icon">Full Width</a>
+                                                 </li>
+                                          </ul>
+                                   </li> --}}
                             </ul>
                      </li>
                      <li class=" navigation-header">
