@@ -44,6 +44,17 @@ Route::group(
                     'DashboardController@index'
                 )->name('admin.dashboard');
 
+                ####################### START HEADER ROUTES ####################
+                
+                // AUTHENTICATED ADMIN'S SESSTION LOGOUT
+                Route::get(
+                    'logout',
+                    'LoginController@logout'
+                )->name('admin.logout');
+                ######################## END HEADER ROUTES #####################
+
+                ####################### START SIDEBAR ROUTES ####################
+
                 ###################### START SETTINGS ROUTES ####################
                 Route::group(
                     [
@@ -64,6 +75,8 @@ Route::group(
                     }
                 );
                 ###################### END SETTINGS ROUTES ######################
+
+                ####################### END SIDEBAR ROUTES ######################
 
             }
         );
