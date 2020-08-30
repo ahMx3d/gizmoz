@@ -17,6 +17,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 // ADMIN ROUTES FILE HAS A PREFIX OF 'admin'
 
+####################### START MCAMARA ROUTES #######################
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -94,3 +95,4 @@ Route::group(
 
     }
 );
+######################## END MCAMARA ROUTES ########################

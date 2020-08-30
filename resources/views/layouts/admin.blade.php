@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html
+    class="loading"
+    {{-- lang="{{app()->getLocale() === 'en'? 'en': 'ar'}}" --}}
+    {{-- data-textdirection="{{app()->getLocale() === 'en'? 'ltr': 'rtl'}}"> --}}
+    lang="{{app()->getLocale()}}"
+    data-textdirection="{{LaravelLocalization::getCurrentLocaleDirection()}}">
 
     <head>
         <meta
@@ -40,13 +45,13 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/plugins/animate/animate.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/plugins/animate/animate.css')}}">
 
         <!-- START VENDOR CSS-->
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/vendors.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/vendors.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
@@ -82,33 +87,33 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/core/menu/menu-types/vertical-menu.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/pages/chat-application.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/pages/chat-application.css')}}">
         <!-- END VENDOR CSS-->
 
         <!-- START MODERN CSS-->
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/app.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/app.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/custom-rtl.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/custom-rtl.css')}}">
         <!-- END MODERN CSS-->
 
         <!-- START PAGE LEVEL CSS-->
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/core/menu/menu-types/vertical-menu.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/core/colors/palette-gradient.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
@@ -116,11 +121,11 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/core/colors/palette-gradient.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/core/colors/palette-gradient.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/pages/timeline.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/pages/timeline.css')}}">
         <link
             rel="stylesheet"
             type="text/css"
@@ -139,7 +144,7 @@
         <link
             rel="stylesheet"
             type="text/css"
-            href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
+            href="{{asset('assets/admin/' .getCSSDirection(). '/' .getStyleDirection(). '.css')}}">
         <!-- END CUSTOM CSS-->
         
         @notify_css
