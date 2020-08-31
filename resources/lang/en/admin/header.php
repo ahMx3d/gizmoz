@@ -15,6 +15,7 @@ return [
 
     ############################# START HEADER ########################
     'greeting'      => ucfirst('welcome back,'),
+    'langs'         => ucfirst('languages'),
     'edit_profile'  => ucfirst('edit profile'),
     'logout'        => ucfirst('logout'),
     ############################# END HEADER ##########################
