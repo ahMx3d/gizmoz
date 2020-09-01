@@ -13,4 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// TESTING ROUTE
+Route::get('test', function () {
+    return \App\Models\Cate::first();
+});

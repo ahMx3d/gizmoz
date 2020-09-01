@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2020 at 02:23 AM
+-- Generation Time: Sep 01, 2020 at 06:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -41,7 +41,87 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(4, 'admin', 'admin@admin.com', '$2y$10$aCaX7ix9lYK0.BL2Q5ptVOg/vEVrKkDgK/sE5lGib7EvuZXH0Jhp2', '2020-08-20 02:32:13', '2020-08-20 02:32:13');
+(4, 'admin', 'admin@admin.com', '$2y$10$4uJuJZQTuIAb1EKQNKVwGOatjlwiqXgPwT26piNI8IIyfIBIYKRmC', '2020-08-20 02:32:13', '2020-08-31 22:50:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cates`
+--
+
+CREATE TABLE `cates` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(10) UNSIGNED DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cates`
+--
+
+INSERT INTO `cates` (`id`, `parent_id`, `slug`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'sed-consequatur-distinctio-reiciendis-laboriosam-quo-totam-provident', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(2, NULL, 'perspiciatis-itaque-at-et-cumque-rerum-blanditiis-reiciendis-doloremque', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(3, NULL, 'possimus-fugiat-accusantium-molestias-vitae', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(4, NULL, 'voluptas-aut-ab-accusantium-molestiae-totam-ut', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(5, NULL, 'commodi-assumenda-perspiciatis-cupiditate-hic-laudantium-non', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(6, NULL, 'quasi-quaerat-distinctio-veritatis-non-dolor-unde-culpa', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(7, NULL, 'fugit-animi-nulla-ut-optio-consequatur-soluta', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(8, NULL, 'eum-in-quisquam-qui-et-non-similique-beatae-et', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(9, NULL, 'excepturi-optio-occaecati-quo-temporibus-aperiam', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(10, NULL, 'itaque-facilis-impedit-et-odit', 0, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(11, NULL, 'ab-minima-qui-dolor-reprehenderit-voluptates', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(12, NULL, 'earum-at-est-mollitia', 1, '2020-09-01 12:24:57', '2020-09-01 12:24:57'),
+(13, NULL, 'sint-aut-vitae-non-iusto-veritatis-doloremque', 0, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(14, NULL, 'aut-molestiae-in-molestiae-porro-autem-libero-assumenda', 1, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(15, NULL, 'aut-porro-suscipit-quia-aut-quia-nam-inventore', 1, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(16, NULL, 'quia-doloribus-necessitatibus-rerum-maxime-est-totam', 0, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(17, NULL, 'ea-non-eos-dolorem-occaecati', 0, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(18, NULL, 'doloribus-quidem-minus-enim-voluptatem-est-molestiae-fugiat', 0, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(19, NULL, 'nisi-voluptatem-dolores-quo-aut', 1, '2020-09-01 12:24:58', '2020-09-01 12:24:58'),
+(20, NULL, 'omnis-ut-sit-soluta-vitae-provident-assumenda', 0, '2020-09-01 12:24:58', '2020-09-01 12:24:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cate_translations`
+--
+
+CREATE TABLE `cate_translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cate_id` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cate_translations`
+--
+
+INSERT INTO `cate_translations` (`id`, `cate_id`, `locale`, `name`) VALUES
+(1, 1, 'en', 'omnis'),
+(2, 2, 'en', 'est'),
+(3, 3, 'en', 'praesentium'),
+(4, 4, 'en', 'et'),
+(5, 5, 'en', 'sit'),
+(6, 6, 'en', 'iusto'),
+(7, 7, 'en', 'fugit'),
+(8, 8, 'en', 'tempore'),
+(9, 9, 'en', 'eum'),
+(10, 10, 'en', 'minus'),
+(11, 11, 'en', 'inventore'),
+(12, 12, 'en', 'porro'),
+(13, 13, 'en', 'tenetur'),
+(14, 14, 'en', 'nihil'),
+(15, 15, 'en', 'tempora'),
+(16, 16, 'en', 'voluptates'),
+(17, 17, 'en', 'esse'),
+(18, 18, 'en', 'itaque'),
+(19, 19, 'en', 'accusantium'),
+(20, 20, 'en', 'quasi');
 
 -- --------------------------------------------------------
 
@@ -80,7 +160,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2020_08_20_033234_create_admins_table', 1),
 (9, '2020_08_27_132008_create_settings_table', 2),
-(10, '2020_08_27_132112_create_setting_translations_table', 2);
+(10, '2020_08_27_132112_create_setting_translations_table', 2),
+(11, '2020_09_01_130450_create_cates_table', 3),
+(12, '2020_09_01_130846_create_cate_translations_table', 3);
 
 -- --------------------------------------------------------
 
@@ -126,9 +208,9 @@ INSERT INTO `settings` (`id`, `key`, `is_translatable`, `plain_value`, `created_
 (25, 'local_pickup_cost', 0, '0', '2020-08-27 20:03:04', '2020-08-27 20:03:04'),
 (26, 'flat_rate_cost', 0, '0', '2020-08-27 20:03:04', '2020-08-27 20:03:04'),
 (27, 'store_name', 1, NULL, '2020-08-27 20:03:04', '2020-08-27 20:03:04'),
-(28, 'free_shipping_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-28 18:36:15'),
-(29, 'local_pickup_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-27 20:03:04'),
-(30, 'flat_rate_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-27 20:03:04');
+(28, 'free_shipping_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-29 14:25:58'),
+(29, 'local_pickup_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-29 14:26:29'),
+(30, 'flat_rate_label', 1, NULL, '2020-08-27 20:03:04', '2020-08-29 14:25:22');
 
 -- --------------------------------------------------------
 
@@ -182,6 +264,21 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `admins_email_unique` (`email`);
 
 --
+-- Indexes for table `cates`
+--
+ALTER TABLE `cates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cates_slug_unique` (`slug`),
+  ADD KEY `cates_parent_id_foreign` (`parent_id`);
+
+--
+-- Indexes for table `cate_translations`
+--
+ALTER TABLE `cate_translations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cate_translations_cate_id_locale_unique` (`cate_id`,`locale`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -231,6 +328,18 @@ ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `cates`
+--
+ALTER TABLE `cates`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `cate_translations`
+--
+ALTER TABLE `cate_translations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -240,7 +349,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -263,6 +372,18 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cates`
+--
+ALTER TABLE `cates`
+  ADD CONSTRAINT `cates_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `cates` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `cate_translations`
+--
+ALTER TABLE `cate_translations`
+  ADD CONSTRAINT `cate_translations_cate_id_foreign` FOREIGN KEY (`cate_id`) REFERENCES `cates` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `setting_translations`
