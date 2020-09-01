@@ -12,5 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserSeeder::class);
+
+        // DATA FOR ADMINS TABLE
+        $this->call(AdminSeeder::class);
+        // DATA FOR CATES TABLE
+        $this->call(CateSeeder::class);
+        // DATA FOR SETTINGS TABLE
+        $this->call(SettingDatabaseSeeder::class);
     }
 }
