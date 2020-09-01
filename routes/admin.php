@@ -45,7 +45,27 @@ Route::group(
                 )->name('admin.dashboard');
 
                 ####################### START HEADER ROUTES ####################
-                
+
+                Route::group(
+                    [
+                        'prefix' => 'profile'
+                    ],
+                    function () {
+
+                        // AUTHENTICATED ADMIN EDIT PROFILE
+                        Route::get(
+                            'edit',
+                            'ProfilesController@edit'
+                        )->name('edit.admin.profile');
+
+                        // AUTHENTICATED ADMIN UPDATE PROFILE
+                        Route::put(
+                            'update/{id}',
+                            'ProfilesController@update'
+                        )->name('update.admin.profile');
+                    }
+                );
+
                 // AUTHENTICATED ADMIN'S SESSTION LOGOUT
                 Route::get(
                     'logout',
@@ -55,26 +75,26 @@ Route::group(
 
                 ####################### START SIDEBAR ROUTES ####################
 
-                ###################### START SETTINGS ROUTES ####################
-                Route::group(
-                    [
-                        'prefix' => 'settings'
-                    ],
-                    function () {
-                        // EDIT SHIPPING METHODS
-                        Route::get(
-                            'shipping-methods/{type}',
-                            'SettingsController@editShippingMethods'
-                        )->name('edit.shipping.methods');
+                    ###################### START SETTINGS ROUTES ####################
+                    Route::group(
+                        [
+                            'prefix' => 'settings'
+                        ],
+                        function () {
+                            // EDIT SHIPPING METHODS
+                            Route::get(
+                                'shipping-methods/{type}',
+                                'SettingsController@editShippingMethods'
+                            )->name('edit.shipping.methods');
 
-                        // UPDATE SHIPPING METHODS
-                        Route::put(
-                            'shipping-methods/{id}',
-                            'SettingsController@updateShippingMethods'
-                        )->name('update.shipping.methods');
-                    }
-                );
-                ###################### END SETTINGS ROUTES ######################
+                            // UPDATE SHIPPING METHODS
+                            Route::put(
+                                'shipping-methods/{id}',
+                                'SettingsController@updateShippingMethods'
+                            )->name('update.shipping.methods');
+                        }
+                    );
+                    ###################### END SETTINGS ROUTES ######################
 
                 ####################### END SIDEBAR ROUTES ######################
 

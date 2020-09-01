@@ -76,7 +76,7 @@
                             </span> --}}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('edit.admin.profile') }}">
 
                                 <i class="ft-user"></i>
                                 {{__('admin/header.edit_profile')}}

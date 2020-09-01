@@ -17,7 +17,13 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
 
-            if (Request::is(app()->getLocale(). '/admin*')) {
+            if (
+                Request::is(app()->getLocale(). '/admin*')
+                ||
+                Request::is('/admin*')
+                ||
+                Request::is('/admin')
+            ) {
                 return route('admin.login');
             } else {
                 return route('login');

@@ -19,8 +19,9 @@ return [
     ############################# END ERRORS ##########################
 
     ############################# START SUCCESS ########################
-    'update_mess'   => ucfirst('updated successfully'),
-    'store_mess'    => ucfirst('stored successfully'),
+    'update_mess'       => ucfirst('updated successfully'),
+    'not_update_mess'   => ucfirst('nothing to update'),
+    'store_mess'        => ucfirst('stored successfully'),
     ############################# END SUCCESS ##########################
 
 ];

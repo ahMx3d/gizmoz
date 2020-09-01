@@ -15,18 +15,31 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     // ALL FILLABLES & NO HIDDENS
-    protected $guarded = [];
+    // protected $guarded = [];
+    
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'created_at',
+        'updated_at',
+    ];
 
     // CREATE & UPDATE TIME
     public $timestamps = true;
 
-    // public function setPasswordAttribute($val)
-    // {
-
-    //     if (!empty($val)) {
-    //         $this->attributes['password'] = bcrypt($val);
-    //     }
+    /**
+     * Mutates admin password into hashed salt.
+     *
+     * @param val
+     */
+    public function setPasswordAttribute($val)
+    {
+        // NOT EMPTY VALUE CHECK
+        if (!empty($val)) {
+            $this->attributes['password'] = bcrypt($val);
+        }
         
-    // }
+    }
     
 }
