@@ -13,6 +13,16 @@ return [
     |
     */
 
+    ############################# START GLOBALS ########################
+    'main_page' => ucfirst('dashboard'),
+    'view_all'  => ucfirst('view all'),
+    'add_new'   => ucfirst('add new'),
+    ############################## END GLOBALS #########################
+
+    ############################# START GENERAL TABS ########################
+    'main_cates' => ucfirst('main categories'),
+    ############################## END GENERAL TABS #########################
+
     ############################# START SETTINGS ########################
     'settings'  => ucfirst('settings'),
         

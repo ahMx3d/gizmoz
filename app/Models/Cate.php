@@ -64,4 +64,28 @@ class Cate extends Model
     protected $casts = [
         'status' => 'boolean'
     ];
+
+    /**
+     * Parent category scope.
+     * filters items where the given key is null.
+     * 
+     * @param query
+     * @return clause
+     */
+
+    public function scopeParentCate($query)
+    {
+        return $query->whereNull('parent_id');
+    }
+
+    /**
+     * Displays category status as a string.
+     * 
+     * @return string
+     */
+    public function getStatus()
+    {
+        return ($this->status == true)? __('admin/cates.model_active'): __('admin/cates.model_pending');
+    }
+    
 }
