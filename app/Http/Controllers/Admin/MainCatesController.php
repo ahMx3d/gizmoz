@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCateRequest;
 use App\Models\Cate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MainCatesController extends Controller
 {
@@ -169,6 +170,11 @@ class MainCatesController extends Controller
                 }
 
                 /**
+                 * Start database transactions.
+                 */
+                DB::beginTransaction();
+
+                /**
                  * Update slug & status in cates table.
                  */
                 $cate->update([
@@ -181,12 +187,22 @@ class MainCatesController extends Controller
                  */
                 $cate->name = $request->input('cate_name');
                 $cate->save();
+
+                /**
+                 * Commit database transactions.
+                 */
+                DB::commit();
             }
 
             return redirect(route('main-categories.index'))->with([
                 'success' => __('admin/alerts.update_mess')
             ]);
         } catch (\Throwable $th) {
+
+            /**
+             * Rollback database transactions.
+             */
+            DB::rollback();
 
             return redirect(route('main-categories.edit', $id))->with([
                 'error' => __('admin/alerts.catch_error')
