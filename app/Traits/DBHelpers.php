@@ -14,24 +14,31 @@ trait DBHelpers
      * 
      * @return \Illuminate\Http\Response || @return object $row
      */
-    public function getRowByID($modelName,$id, $redirectionRoute)
+    public function getRowByID($modelName, $id, $redirectionRoute)
     {
-        /**
-         * The database row.
-         * 
-         * @var object
-         */
-        $row = $modelName::find($id);
+        try {
+            /**
+             * The database row.
+             * 
+             * @var object
+             */
+            $row = $modelName::find($id);
 
-        /**
-         * Check row existance
-         */
-        if (!$row) {
-            return redirect(route($redirectionRoute))->with([
-                'error' => __('admin/alerts.db_error')
+            /**
+             * Check row existance
+             */
+            if (!$row) {
+                return redirect(route($redirectionRoute))->with([
+                    'error' => __('admin/alerts.db_error')
+                ]);
+            }
+
+            return $row;
+        } catch (\Throwable $th) {
+
+            return redirect(route('admin.dashboard'))->with([
+                'error' => __('admin/alerts.catch_error')
             ]);
         }
-
-        return $row;
     }
 }
