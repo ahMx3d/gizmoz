@@ -5,11 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCateRequest;
 use App\Models\Cate;
+use App\Traits\DBHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MainCatesController extends Controller
 {
+    /**
+     * Inherit a listing of database helper methods.
+     *
+     */
+    use DBHelpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -85,18 +92,13 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @var object
+             * @var object || @return \Illuminate\Http\Response
              */
-            $cate = Cate::find($id);
-
-            /**
-             * Check category existance
-             */
-            if (!$cate) {
-                return redirect(route('main-categories.index'))->with([
-                    'error' => __('admin/alerts.db_error')
-                ]);
-            }
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id,
+                'main-categories.index'
+            );
 
             return view(
                 'admin.cates.edit',
@@ -124,18 +126,13 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @var object
+             * @var object || @return \Illuminate\Http\Response
              */
-            $cate = Cate::find($id);
-
-            /**
-             * Check category existance.
-             */
-            if (!$cate) {
-                return redirect(route('main-categories.index'))->with([
-                    'error' => __('admin/alerts.db_error')
-                ]);
-            }
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id,
+                'main-categories.index'
+            );
 
             /**
              * Check whether any value is changed.
