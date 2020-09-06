@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Create New Main Category')
+@section('title', __("admin/cates.create_page_title"))
 
 @section('content')
 
@@ -11,12 +11,16 @@
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('admin.dashboard')}}">الرئيسية</a>
+                                    <a href="{{route('admin.dashboard')}}">
+                                        <span>{{ __('admin/cates.main_page') }}</span>
+                                    </a>
                                 </li>
                                 <li class="breadcrumb-item">
-                                    <a href="{{route('admin.main.cates')}}">الاقسام الرئيسيه</a>
+                                    <a href="{{ route('main-categories.index') }}">
+                                        <span>{{ __('admin/cates.main_cates') }}</span>
+                                    </a>
                                 </li>
-                                <li class="breadcrumb-item active">اضافة جديد</li>
+                                <li class="breadcrumb-item active">{{ __('admin/cates.add_new') }}</li>
                             </ol>
                         </div>
                     </div>
@@ -31,7 +35,7 @@
                                 <div class="card-header">
                                     <h4
                                         class="card-title"
-                                        id="basic-layout-form">اضافة قسم رئيسى</h4>
+                                        id="basic-layout-form">{{ __('admin/cates.create_header_title') }}</h4>
                                     <a class="heading-elements-toggle">
                                         <i class="la la-ellipsis-v font-medium-3"></i>
                                     </a>
@@ -68,8 +72,8 @@
                                     <div class="card-body">
                                         <form
                                             class="form"
-                                            action="{{route('admin.main.cate.save')}}"
-                                            method="post"
+                                            action="{{route('main-categories.store')}}"
+                                            method="POST"
                                             enctype="multipart/form-data">
 
                                             @csrf
@@ -77,85 +81,59 @@
                                             <div class="form-body">
                                                 <h4 class="form-section">
                                                     <i class="ft-home"></i>
-                                                    <span>التفاصيل</span>
+                                                    <span>{{ __('admin/cates.create_details') }}</span>
                                                 </h4>
 
-                                                @if (getActiveLangs()->count() > 0)
-                                                    @foreach (getActiveLangs() as $index => $lang)
-                                                    <div class="row">
+                                                <div class="row">
 
-                                                        <div class="col-md-9">
-                                                            <div class="form-group">
-                                                                <label for="cate-name">الاسم - {{__('global.' .$lang->abbr)}}</label>
-                                                                <input
-                                                                    type="text"
-                                                                    value=""
-                                                                    id="cate-name"
-                                                                    name="cate_bags[{{$index}}][cate_name]"
-                                                                    class="form-control"
-                                                                    placeholder="ادخل اسم القسم الرئيسى" />
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="cate_name">{{ __('admin/cates.cate_name') }}</label>
+                                                            <input
+                                                                type="text"
+                                                                value="{{old('cate_name')}}"
+                                                                id="cate_name"
+                                                                name="cate_name"
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/cates.cate_name_placeholder') }}" />
 
-                                                                @error('cate_bags.' .$index. '.cate_name')
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                @enderror
-                                                                
-                                                            </div>
+                                                            @error('cate_name')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                            
                                                         </div>
-
-                                                        <div class="col-md-0 hidden">
-                                                            <div class="form-group">
-                                                                <label for="cate-abbr">الاختصار - {{__('global.' .$lang->abbr)}}</label>
-                                                                <input
-                                                                    type="text"
-                                                                    value="{{$lang->abbr}}"
-                                                                    id="cate-abbr"
-                                                                    name="cate_bags[{{$index}}][cate_abbr]"
-                                                                    class="form-control"
-                                                                    placeholder="ادخل اختصار لغة القسم" />
-
-                                                                @error('cate_bags.' .$index. '.cate_abbr')
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                @enderror
-                                                                
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="form-group text-center" style="{{--margin-top: 30px;--}}">
-                                                                <label
-                                                                    style="display: block; margin-bottom: 13px;"
-                                                                    for="switcheryColor4"
-                                                                    class="card-title">الحالة - {{__('global.' .$lang->abbr)}}</label>
-                                                                <input
-                                                                    type="checkbox"
-                                                                    name="cate_bags[{{$index}}][cate_stat]"
-                                                                    value="1"
-                                                                    id="switcheryColor4"
-                                                                    class="switchery"
-                                                                    data-color="success"
-                                                                    checked />
-
-                                                                @error('cate_bags.' .$index. '.cate_stat')
-                                                                    <div>
-                                                                        <span class="text-danger">{{$message}}</span>
-                                                                    </div>
-                                                                @enderror
-
-                                                            </div>
-                                                        </div>
-
                                                     </div>
-                                                    @endforeach
-                                                @endif
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="cate_slug">{{ __('admin/cates.cate_slug') }}</label>
+                                                            <input
+                                                                type="text"
+                                                                value="{{old('cate_slug')}}"
+                                                                id="cate_slug"
+                                                                name="cate_slug"
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/cates.cate_slug_placeholder') }}" />
+
+                                                            @error('cate_slug')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                            
+                                                        </div>
+                                                    </div>
+
+                                                </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-12">
+
+                                                    <div class="col-md-10">
                                                         <div class="form-group">
-                                                            <label for="cate_imag">الصوره</label>
+                                                            <label for="cate_imag">{{ __('admin/cates.cate_imag') }}</label>
                                                             <input
                                                                 type="file"
                                                                 class="form-control form-control-lg form-control-file"
                                                                 name="cate_imag"
+                                                                value="{{ old('cate_img') }}"
                                                                 id="cate_imag" />
 
                                                             @error('cate_imag')
@@ -166,7 +144,33 @@
 
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group text-center" style="{{--margin-top: 30px;--}}">
+                                                            <label
+                                                                style="display: block; margin-bottom: 13px;"
+                                                                for="switcheryColor4"
+                                                                class="card-title">{{ __('admin/cates.cate_stat') }}</label>
+                                                            <input
+                                                                type="checkbox"
+                                                                name="cate_stat"
+                                                                value="1"
+                                                                id="switcheryColor4"
+                                                                class="switchery"
+                                                                data-color="success"
+                                                                checked />
+
+                                                            @error('cate_stat')
+                                                                <div>
+                                                                    <span class="text-danger">{{$message}}</span>
+                                                                </div>
+                                                            @enderror
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                             </div>
 
                                             <div class="form-actions">
@@ -176,7 +180,7 @@
                                                     onclick="history.back();">
                                                     
                                                     <i class="ft-x"></i>
-                                                    <span>تراجع</span>
+                                                    <span>{{ __('admin/cates.cate_cancel_action') }}</span>
                                                 </button>
 
                                                 <button
@@ -184,7 +188,7 @@
                                                     class="btn btn-primary">
 
                                                     <i class="la la-check-square-o"></i>
-                                                    <span>حفظ</span>
+                                                    <span>{{ __('admin/cates.cate_create_action') }}</span>
                                                 </button>
                                             </div>
                                         </form>

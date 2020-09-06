@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Edit Main Category')
+@section('title', __("admin/cates.edit_page_title"))
 
 @section('content')
 
@@ -16,10 +16,12 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('main-categories.index') }}">{{ __('admin/cates.main_cates') }}</a>
+                                <a href="{{ route('main-categories.index') }}">
+                                    <span>{{ __('admin/cates.main_cates') }}</span>
+                                </a>
                             </li>
                             <li class="breadcrumb-item active">
-                                <a href="{{ route('main-categories.edit', $cate->id) }}">{{ __('admin/cates.edit_cate') }}</a>
+                                <span>{{ __('admin/cates.edit_cate') }}</span>
                             </li>
                         </ol>
                     </div>
@@ -130,7 +132,7 @@
                                                         <label for="cate_slug">{{ __('admin/cates.cate_slug') }}</label>
                                                         <input
                                                             type="text"
-                                                            value="{{old('name', $cate->slug)}}"
+                                                            value="{{old('cate_slug', $cate->slug)}}"
                                                             id="cate_slug"
                                                             name="cate_slug"
                                                             class="form-control"

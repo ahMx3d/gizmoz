@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __("admin/cates.page_title"))
+@section('title', __("admin/cates.index_page_title"))
 
 @section('content')
 <div class="app-content content">

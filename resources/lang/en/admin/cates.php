@@ -13,7 +13,11 @@ return [
     |
     */
 
-    'page_title' => ucfirst('main categories'),
+    ############################# START PAGE TITLES ########################
+    'index_page_title'  => ucfirst('main categories'),
+    'edit_page_title'   => ucfirst('edit main category'),
+    'create_page_title' => ucfirst('create main category'),
+    ############################# END PAGE TITLES ##########################
 
     ############################# START BREADCRUMB ########################
     'main_cates'    => ucfirst('main categories'),
@@ -25,6 +29,7 @@ return [
     ############################# START CARD HEADER ########################
     'index_header_title'  => ucfirst('website main categories'),
     'edit_header_title'   => ucfirst('edit main category'),
+    'create_header_title' => ucfirst('create main category'),
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
@@ -54,7 +59,8 @@ return [
         ############################# END TABLE MODEL DATA ##########################
         
         ############################# START FORM LAYOUT ########################
-        'edit_details'  => ucfirst('details'),
+        'edit_details'      => ucfirst('details'),
+        'create_details'    => ucfirst('details'),
         ############################# END FORM LAYOUT ##########################
 
         ############################# START FORM LABELS ########################
@@ -62,6 +68,7 @@ return [
         'cate_name' => ucfirst('name'),
         'cate_slug' => strtoupper('seo'),
         'cate_stat' => ucfirst('status'),
+        'cate_img'  => ucfirst('photo'),
         ############################# END FORM LABELS ##########################
 
         ############################# START FORM PLACEHOLDERS ########################
@@ -71,6 +78,7 @@ return [
         
         ############################# START FORM ACTIONS ########################
         'cate_update_action' => ucfirst('update'),
+        'cate_create_action' => ucfirst('save'),
         'cate_cancel_action' => ucfirst('cancel'),
         ############################# END FORM ACTIONS ##########################
 

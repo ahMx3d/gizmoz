@@ -58,7 +58,7 @@ class MainCatesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.cates.create');
     }
 
     /**
@@ -67,9 +67,73 @@ class MainCatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MainCateRequest $request)
     {
-        //
+        try {
+
+            /**
+             * Check whether request has status checked box.
+             */
+            if (!$request->has('cate_stat')) {
+
+                /**
+                 * Add request status value of zero.
+                 */
+                $request->request->add([
+                    'cate_stat' => 0
+                ]);
+            } else {
+
+                /**
+                 * Add request status value of one.
+                 */
+                $request->request->add([
+                    'cate_stat' => 1
+                ]);
+            }
+
+            /**
+             * Start database transactions.
+             */
+            DB::beginTransaction();
+
+            /**
+             * Update slug & status in cates table.
+             */
+            $cate = Cate::create([
+                'slug'      => $request->input('cate_slug'),
+                'status'    => $request->input('cate_stat')
+            ]);
+
+            /**
+             * Update name in cate_translations table.
+             */
+            $cate->name = $request->input('cate_name');
+            $cate->save();
+
+            /**
+             * Commit database transactions.
+             */
+            DB::commit();
+
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'success',
+                'store_mess'
+            );
+        } catch (\Throwable $th) {
+
+            /**
+             * Rollback database transactions.
+             */
+            DB::rollback();
+
+            return Utilities::redirectWithMSG(
+                'main-categories.create',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

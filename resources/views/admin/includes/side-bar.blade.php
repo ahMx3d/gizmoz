@@ -59,7 +59,7 @@
                                    <li>
                                           <a
                                                  class="menu-item"
-                                                 href=""
+                                                 href="{{ route('main-categories.create') }}"
                                                  data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
                                    </li>
                             </ul>
