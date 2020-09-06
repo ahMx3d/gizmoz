@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __("admin/cates.index_page_title"))
+@section('title', __("admin/cates.show_page_title"))
 
 @section('content')
 <div class="app-content content">
@@ -15,11 +15,13 @@
                                     <span>{{ __('admin/cates.main_page') }}</span>
                                 </a>
                             </li>
-                            <li class="breadcrumb-item active">
-                                <a href="{{ route('main-categories.index') }}">{{ __('admin/cates.main_cates') }}</a>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('main-categories.index') }}">
+                                    <span>{{ __('admin/cates.main_cates') }}</span>
+                                </a>
                             </li>
                             <li class="breadcrumb-item active">
-                                <a href="{{ route('main-categories.create') }}">{{ __('admin/cates.add_new') }}</a>
+                                <span>{{ __('admin/cates.show_cate') }}</span>
                             </li>
                         </ol>
                     </div>
@@ -33,7 +35,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">{{ __('admin/cates.index_header_title') }}</h4>
+                                <h4 class="card-title">{{ __('admin/cates.show_header_title') }}</h4>
                                 <a class="heading-elements-toggle">
                                     <i class="la la-ellipsis-v font-medium-3"></i>
                                 </a>
@@ -72,6 +74,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">{{ __('admin/cates.th_name') }}</th>
+                                            <th class="text-center">{{ __('admin/cates.th_sub_cates') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_seo') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_image') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_status') }}</th>
@@ -79,61 +82,52 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
-                                        @isset($cates)
-                                            @foreach($cates as $cate)
-                                            
-                                                <tr>
-                                                    <td class="text-center">{{ $cate->name }}</td>
-                                                    <td class="text-center">{{ $cate->slug }}</td>
-                                                    <td class="text-center">
-                                                        <img
-                                                            style="width: 100%; {{--height:100%;--}}"
-                                                            src=""
-                                                            alt="{{ __('admin/cates.td_img_alt') }}" />
-                                                    </td>
-                                                    <td class="text-center">{{ $cate->getStatus() }}</td>
-                                                    <td class="text-center">
-                                                        <div
-                                                            class="btn-group"
-                                                            role="group"
-                                                            aria-label="Basic example">
+                                            <tr>
+                                                <td class="text-center">{{ $cate->name }}</td>
+                                                <td class="text-center">{{ $cate->parent_id }}</td>
+                                                <td class="text-center">{{ $cate->slug }}</td>
+                                                <td class="text-center">
+                                                    <img
+                                                        style="width: 100%; {{--height:100%;--}}"
+                                                        src=""
+                                                        alt="{{ __('admin/cates.td_img_alt') }}" />
+                                                </td>
+                                                <td class="text-center">{{ $cate->getStatus() }}</td>
+                                                <td class="text-center">
+                                                    <div
+                                                        class="btn-group"
+                                                        role="group"
+                                                        aria-label="Basic example">
+                                                        
+                                                        <a
+                                                            href="{{ route('main-categories.edit', $cate->id) }}"
+                                                            class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             
-                                                            <a
-                                                                href="{{ route('main-categories.edit', $cate->id) }}"
-                                                                class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                
-                                                                <span>{{ __('admin/cates.td_edit') }}</span>
-                                                            </a>
-                                                            
-                                                            <a
-                                                                href="{{ route('main-categories.show', $cate->id) }}"
-                                                                class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                            
-                                                                <span>{{ __('admin/cates.show_main_cate') }}</span>
-                                                            </a>
-                                                            
-                                                            <form
-                                                                action="{{ route('main-categories.destroy', $cate->id) }}"
-                                                                method="POST">
+                                                            <span>{{ __('admin/cates.td_edit') }}</span>
+                                                        </a>
+                                                        
+                                                        <a
+                                                            href=""
+                                                            class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                        
+                                                            <span>{{ __('admin/cates.td_add_sub') }}</span>
+                                                        </a>
+                                                        
+                                                        <form
+                                                            action="{{ route('main-categories.destroy', $cate->id) }}"
+                                                            method="POST">
 
-                                                                @csrf
-                                                                @method('DELETE')
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                                <button class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                    <span>{{ __('admin/cates.td_destroy') }}</span>
-                                                                </button>
-                                                            </form>
+                                                            <button class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                <span>{{ __('admin/cates.td_destroy') }}</span>
+                                                            </button>
+                                                        </form>
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                            {!! $cates->links() !!}
-
-                                        @endisset
-                                        
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <div class="justify-content-center d-flex">

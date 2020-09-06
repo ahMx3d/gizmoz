@@ -144,7 +144,34 @@ class MainCatesController extends Controller
      */
     public function show($id)
     {
-        // 
+        try {
+            /**
+             * The database category.
+             * 
+             * @param \App\Models\Cate
+             * @param int $id
+             * @param string $redirectionRoute
+             * 
+             * @var object || @return \Illuminate\Http\Response
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id,
+                'main-categories.index'
+            );
+
+            return view(
+                'admin.cates.show',
+                compact('cate')
+            );
+        } catch (\Throwable $th) {
+
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

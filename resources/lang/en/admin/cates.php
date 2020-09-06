@@ -17,6 +17,7 @@ return [
     'index_page_title'  => ucfirst('main categories'),
     'edit_page_title'   => ucfirst('edit main category'),
     'create_page_title' => ucfirst('create main category'),
+    'show_page_title'   => ucfirst('show main category'),
     ############################# END PAGE TITLES ##########################
 
     ############################# START BREADCRUMB ########################
@@ -24,19 +25,22 @@ return [
     'main_page'     => ucfirst('dashboard'),
     'add_new'       => ucfirst('add new'),
     'edit_cate'     => ucfirst('edit category'),
+    'show_cate'     => ucfirst('show category'),
     ############################# END BREADCRUMB ##########################
 
     ############################# START CARD HEADER ########################
     'index_header_title'  => ucfirst('website main categories'),
     'edit_header_title'   => ucfirst('edit main category'),
     'create_header_title' => ucfirst('create main category'),
+    'show_header_title'   => ucfirst('show main category'),
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
     
         ############################# START TABLE HEADERS ########################
         'th_name'       => ucfirst('name'),
-        'th_seo'        => strtoupper('seo'),
+        'th_sub_cates'  => ucfirst('subcategories'),
+        'th_seo'        => ucfirst('slug'),
         'th_image'      => ucfirst('image'),
         'th_status'     => ucfirst('status'),
         'th_actions'    => ucfirst('actions'),
@@ -47,10 +51,12 @@ return [
         ############################# END TABLE DATA ##########################
         
         ############################# START TABLE ACTIONS ########################
-        'td_edit'       => ucfirst('edit'),
-        'td_activate'   => ucfirst('activate'),
-        'td_deactivate' => ucfirst('deactivate'),
-        'td_destroy'    => ucfirst('delete'),
+        'td_edit'           => ucfirst('edit'),
+        'show_main_cate'    => ucfirst('show category'),
+        'td_add_sub'        => ucfirst('add subcategory'),
+        'td_activate'       => ucfirst('activate'),
+        'td_deactivate'     => ucfirst('deactivate'),
+        'td_destroy'        => ucfirst('delete'),
         ############################# END TABLE ACTIONS ##########################
         
         ############################# START TABLE MODEL DATA ########################
@@ -66,7 +72,7 @@ return [
         ############################# START FORM LABELS ########################
         'cate_imag' => ucfirst('photo'),
         'cate_name' => ucfirst('name'),
-        'cate_slug' => strtoupper('seo'),
+        'cate_slug' => ucfirst('slug'),
         'cate_stat' => ucfirst('status'),
         'cate_img'  => ucfirst('photo'),
         ############################# END FORM LABELS ##########################
