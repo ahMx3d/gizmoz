@@ -107,7 +107,7 @@
                                                                 <span>{{ __('admin/cates.td_edit') }}</span>
                                                             </a>
                                                             
-                                                            <a
+                                                            {{-- <a
                                                                 href=""
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             
@@ -118,14 +118,19 @@
                                                                     {{ __('admin/cates.td_activate') }}
                                                                     @endif
                                                                 </span>
-                                                            </a>
-
-                                                            <a
-                                                                href="{{ route('main-categories.destroy', $cate->id) }}"
-                                                                class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                            </a> --}}
                                                             
-                                                                <span>{{ __('admin/cates.td_destroy') }}</span>
-                                                            </a>
+                                                            <form
+                                                                action="{{ route('main-categories.destroy', $cate->id) }}"
+                                                                method="POST">
+
+                                                                @csrf
+                                                                @method('DELETE')
+
+                                                                <button class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                    <span>{{ __('admin/cates.td_destroy') }}</span>
+                                                                </button>
+                                                            </form>
 
                                                         </div>
                                                     </td>

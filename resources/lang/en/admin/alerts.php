@@ -20,8 +20,10 @@ return [
 
     ############################# START SUCCESS ########################
     'update_mess'       => ucfirst('updated successfully'),
+    'delete_mess'       => ucfirst('deleted successfully'),
     'not_update_mess'   => ucfirst('nothing to update'),
     'store_mess'        => ucfirst('stored successfully'),
+    'db_success'        => ucfirst('operation accomplished successfully'),
     ############################# END SUCCESS ##########################
 
 ];

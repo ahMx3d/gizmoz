@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainCateRequest;
 use App\Models\Cate;
-use App\Traits\DBHelpers;
+use App\Traits\Admin\DBHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,9 +43,11 @@ class MainCatesController extends Controller
             );
         } catch (\Throwable $th) {
 
-            return redirect(route('admin.dashboard'))->with([
-                'error' => __('admin/alerts.catch_error')
-            ]);
+            return Utilities::redirectWithMSG(
+                'admin.dashboard',
+                'error',
+                'catch_error'
+            );
         }
     }
 
@@ -92,6 +95,10 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
+             * @param \App\Models\Cate
+             * @param int $id
+             * @param string $redirectionRoute
+             * 
              * @var object || @return \Illuminate\Http\Response
              */
             $cate = $this->getRowByID(
@@ -106,9 +113,11 @@ class MainCatesController extends Controller
             );
         } catch (\Throwable $th) {
 
-            return redirect(route('main-categories.index'))->with([
-                'error' => __('admin/alerts.catch_error')
-            ]);
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'error',
+                'catch_error'
+            );
         }
     }
 
@@ -126,6 +135,10 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
+             * @param \App\Models\Cate
+             * @param int $id
+             * @param string $redirectionRoute
+             *
              * @var object || @return \Illuminate\Http\Response
              */
             $cate = $this->getRowByID(
@@ -191,9 +204,11 @@ class MainCatesController extends Controller
                 DB::commit();
             }
 
-            return redirect(route('main-categories.index'))->with([
-                'success' => __('admin/alerts.update_mess')
-            ]);
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'success',
+                'update_mess'
+            );
         } catch (\Throwable $th) {
 
             /**
@@ -201,9 +216,12 @@ class MainCatesController extends Controller
              */
             DB::rollback();
 
-            return redirect(route('main-categories.edit', $id))->with([
-                'error' => __('admin/alerts.catch_error')
-            ]);
+            return Utilities::redirectWithMSG(
+                'main-categories.edit',
+                'error',
+                'catch_error',
+                $id
+            );
         }
     }
 
@@ -215,6 +233,41 @@ class MainCatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            /**
+             * The database category.
+             * 
+             * @param \App\Models\Cate
+             * @param int $id
+             * @param string $redirectionRoute
+             *
+             * @var object || @return \Illuminate\Http\Response
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id,
+                'main-categories.index'
+            );
+
+            /**
+             * Delete Category row from database table.
+             * 
+             */
+            $cate->delete();
+
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'success',
+                'delete_mess'
+            );
+        } catch (\Throwable $th) {
+
+            return Utilities::redirectWithMSG(
+                'main-categories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 }

@@ -16,7 +16,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /**
  * The pagination constant.
  * 
- * @var CONSTANT
 */
 define('PAGINATION_COUNT', 15);
 
