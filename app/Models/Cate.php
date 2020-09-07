@@ -79,6 +79,19 @@ class Cate extends Model
     }
 
     /**
+     * Child category scope.
+     * filters items where the given key is not null.
+     * 
+     * @param query
+     * @return clause
+     */
+
+    public function scopeChildCate($query)
+    {
+        return $query->whereNotNull('parent_id');
+    }
+
+    /**
      * Displays category status as a string.
      * 
      * @return string

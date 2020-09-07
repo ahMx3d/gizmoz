@@ -47,7 +47,7 @@
                             <a href="">
                                    <i class="la la-group"></i>
                                    <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.main_cates') }}</span>
-                            <span class="badge badge badge-danger badge-pill float-right mr-2">{{ App\Models\Cate::count() }}</span>
+                            <span class="badge badge badge-danger badge-pill float-right mr-2">{{ \App\Models\Cate::parentCate()->count() }}</span>
                             </a>
                             <ul class="menu-content">
                                    <li class="active">
@@ -68,21 +68,21 @@
                      <li class="nav-item">
                             <a href="">
                                    <i class="la la-group"></i>
-                                   <span class="menu-title" data-i18n="nav.dash.main">الاقسام الفرعيه</span>
-                            <span class="badge badge badge-warning badge-pill float-right mr-2"></span>
+                                   <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.subcates') }}</span>
+                            <span class="badge badge badge-warning badge-pill float-right mr-2">{{ \App\Models\Cate::childCate()->count() }}</span>
                             </a>
                             <ul class="menu-content">
                                    <li class="active">
                                           <a
                                                  class="menu-item"
-                                                 href=""
-                                                 data-i18n="nav.dash.ecommerce">عرض الاقسام الفرعيه</a>
+                                                 href="{{ route('subcategories.index') }}"
+                                                 data-i18n="nav.dash.ecommerce">{{ __('admin/sidebar.view_all') }}</a>
                                    </li>
                                    <li>
                                           <a
                                                  class="menu-item"
-                                                 href=""
-                                                 data-i18n="nav.dash.crypto">أضافة قسم فرعي</a>
+                                                 href="{{ route('subcategories.create') }}"
+                                                 data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
                                    </li>
                             </ul>
                      </li>

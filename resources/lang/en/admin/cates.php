@@ -18,6 +18,9 @@ return [
     'edit_page_title'   => ucfirst('edit main category'),
     'create_page_title' => ucfirst('create main category'),
     'show_page_title'   => ucfirst('show main category'),
+    #####################################################
+    'subcates_index_page_title'   => ucfirst('subcategories'),
+    'subcates_create_page_title'  => ucfirst('create subcategory'),
     ############################# END PAGE TITLES ##########################
 
     ############################# START BREADCRUMB ########################
@@ -26,6 +29,8 @@ return [
     'add_new'       => ucfirst('add new'),
     'edit_cate'     => ucfirst('edit category'),
     'show_cate'     => ucfirst('show category'),
+    #############################
+    'subcates'      => ucfirst('subcategories'),
     ############################# END BREADCRUMB ##########################
 
     ############################# START CARD HEADER ########################
@@ -33,6 +38,9 @@ return [
     'edit_header_title'   => ucfirst('edit main category'),
     'create_header_title' => ucfirst('create main category'),
     'show_header_title'   => ucfirst('show main category'),
+    #######################################################
+    'subcates_index_header_title'      => ucfirst('website subcategories'),
+    'subcates_create_header_title'     => ucfirst('create subcategory'),
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
@@ -70,16 +78,17 @@ return [
         ############################# END FORM LAYOUT ##########################
 
         ############################# START FORM LABELS ########################
-        'cate_imag' => ucfirst('photo'),
-        'cate_name' => ucfirst('name'),
-        'cate_slug' => ucfirst('slug'),
-        'cate_stat' => ucfirst('status'),
-        'cate_img'  => ucfirst('photo'),
+        'cate_name'  => ucfirst('name'),
+        'cate_slug'  => ucfirst('slug'),
+        'cate_stat'  => ucfirst('status'),
+        'cate_imag'  => ucfirst('photo'),
+        'cate_main'  => ucfirst('main category'),
         ############################# END FORM LABELS ##########################
 
         ############################# START FORM PLACEHOLDERS ########################
         'cate_name_placeholder' => ucfirst('enter category name'),
         'cate_slug_placeholder' => ucfirst('enter category SEO name'),
+        'cate_main_placeholder' => ucfirst('select main category'),
         ############################# END FORM PLACEHOLDERS ##########################
         
         ############################# START FORM ACTIONS ########################

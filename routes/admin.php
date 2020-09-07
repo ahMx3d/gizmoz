@@ -75,9 +75,13 @@ Route::group(
 
                 ####################### START SIDEBAR ROUTES ####################
 
-                    ###################### START CATES ROUTES ####################
+                    ###################### START MAIN CATES ROUTES ####################
                     Route::resource('main-categories', 'MainCatesController');
-                    ###################### START CATES ROUTES ####################
+                    ###################### START MAIN CATES ROUTES ####################
+
+                    ###################### START SUBCATES ROUTES ####################
+                    Route::resource('subcategories', 'SubcatesController');
+                    ###################### START SUBCATES ROUTES ####################
 
                     ###################### START SETTINGS ROUTES ####################
                     Route::group(

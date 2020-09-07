@@ -21,6 +21,7 @@ return [
 
     ############################# START GENERAL TABS ########################
     'main_cates' => ucfirst('main categories'),
+    'subcates'   => ucfirst('subcategories'),
     ############################## END GENERAL TABS #########################
 
     ############################# START SETTINGS ########################

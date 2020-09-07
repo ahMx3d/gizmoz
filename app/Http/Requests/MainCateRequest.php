@@ -29,6 +29,7 @@ class MainCateRequest extends FormRequest
             'cate_slug' => 'required|string|unique:cates,slug,' .$this->id,
             'cate_stat' => 'in:0,1',
             // 'cate_imag' => 'required_without:edit|mimes:jpg,jpeg,png',
+            'cate_main' => 'required|exists:cates,id',
         ];
     }
 
@@ -53,6 +54,10 @@ class MainCateRequest extends FormRequest
 
             // CATEGORY STATUS VALIDATION MESSAGES
             'cate_stat.in'          => __('admin/validation.in'),
+
+            // MAIN CATEGORY SELECTION MESSAGES
+            'cate_main.required'    => __('admin/validation.required'),
+            'cate_main.exists'      => __('admin/validation.exists'),
 
         ];
     }
