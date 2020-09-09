@@ -19,8 +19,10 @@ return [
     'create_page_title' => ucfirst('create main category'),
     'show_page_title'   => ucfirst('show main category'),
     #####################################################
-    'subcates_index_page_title'   => ucfirst('subcategories'),
-    'subcates_create_page_title'  => ucfirst('create subcategory'),
+    'subcates_index_page_title'     => ucfirst('subcategories'),
+    'subcates_create_page_title'    => ucfirst('create subcategory'),
+    'subcates_edit_page_title'      => ucfirst('edit subcategory'),
+    'subcates_show_page_title'      => ucfirst('show subcategory'),
     ############################# END PAGE TITLES ##########################
 
     ############################# START BREADCRUMB ########################
@@ -39,8 +41,9 @@ return [
     'create_header_title' => ucfirst('create main category'),
     'show_header_title'   => ucfirst('show main category'),
     #######################################################
-    'subcates_index_header_title'      => ucfirst('website subcategories'),
-    'subcates_create_header_title'     => ucfirst('create subcategory'),
+    'subcates_index_header_title'       => ucfirst('website subcategories'),
+    'subcates_create_header_title'      => ucfirst('create subcategory'),
+    'subcates_edit_header_title'        => ucfirst('edit subcategory'),
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
@@ -68,8 +71,8 @@ return [
         ############################# END TABLE ACTIONS ##########################
         
         ############################# START TABLE MODEL DATA ########################
-        'model_active'  => ucfirst('active'),
-        'model_pending'  => ucfirst('pending'),
+        'model_active'      => ucfirst('active'),
+        'model_pending'     => ucfirst('pending'),
         ############################# END TABLE MODEL DATA ##########################
         
         ############################# START FORM LAYOUT ########################

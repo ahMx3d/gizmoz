@@ -43,6 +43,8 @@ class Cate extends Model
         'parent_id',
         'slug',
         'status',
+        'created_at',
+        'updated_at',
     ];
 
     /**

@@ -21,11 +21,13 @@ return [
     ########################################
     'subcates_index_page_title'   => 'الاقسام الفرعيه',
     'subcates_create_page_title'  => 'اضافة قسم فرعى',
+    'subcates_edit_page_title'  => 'تعديل قسم فرعى',
+    'subcates_show_page_title'  => 'عرض قسم فرعى',
     ############################# END PAGE TITLES ##########################
 
     ############################# START BREADCRUMB ########################
-    'main_cates'    => 'الاقسام الرئيسيه',
     'main_page'     => 'الرئيسيه',
+    'main_cates'    => 'الاقسام الرئيسيه',
     'add_new'       => 'اضافة جديد',
     'edit_cate'     => 'تعديل قسم',
     'show_cate'     => 'عرض قسم',
@@ -39,8 +41,9 @@ return [
     'create_header_title' => 'اضافة قسم رئيسى',
     'show_header_title'   => 'عرض قسم رئيسى',
     ##########################################
-    'subcates_index_header_title'      => 'اقسام الموقع الفرعيه',
-    'subcates_create_header_title'     => 'اضافة قسم فرعى',
+    'subcates_index_header_title'       => 'اقسام الموقع الفرعيه',
+    'subcates_create_header_title'      => 'اضافة قسم فرعى',
+    'subcates_edit_header_title'        => 'تعديل قسم فرعى',
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################

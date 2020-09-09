@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Cate;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class CateSeeder extends Seeder
@@ -17,31 +18,25 @@ class CateSeeder extends Seeder
          * The main categories data.
          * 
          */
-        $cates = factory(
+        factory(
             Cate::class,
             20
         )->create();
 
-        // SUB CATEGORIES CREATION LOOP
+        /**
+         * The subcategories data.
+         * 
+         */
+        $faker = Factory::create();
         for ($i = 1; $i <= 20; $i++) {
-            // $cate = $this->getRandCate();
-            ##############################
-            
-            $cate = $cates->random();
-            
-            /**
-             * The sub categories data.
-             * 
-             */
-            $cate->update([
-                'parent_id' => $cates->random()->id
+            Cate::create([
+                'name'      => $faker->word(),
+                'slug'      => $faker->slug(),
+                'status'    => $faker->boolean(),
+                'parent_id' => $faker->randomDigitNot(0),
             ]);
-            ###############################
         }
+
     }
 
-    // private function getRandCate()
-    // {
-    //     return Cate::inRandomOrder()->first();
-    // }
 }

@@ -6,11 +6,19 @@ use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CateRequest;
 use App\Models\Cate;
+use App\Traits\Admin\DBHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SubcatesController extends Controller
 {
+
+    /**
+     * Inherit a listing of database helper methods.
+     *
+     */
+    use DBHelpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -170,7 +178,44 @@ class SubcatesController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            /**
+             * The database category.
+             * 
+             * @param \App\Models\Cate
+             * @param int $id
+             * @param string $redirectionRoute
+             * 
+             * @var object || @return \Illuminate\Http\Response
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id,
+                'subcategories.index'
+            );
+
+            /**
+             * The database categories.
+             * 
+             * @var object
+             */
+            $mainCates = Cate::parentCate()->get();
+
+            return view(
+                'admin.subcates.edit',
+                compact(
+                    'cate',
+                    'mainCates'
+                )
+            );
+        } catch (\Throwable $th) {
+
+            return Utilities::redirectWithMSG(
+                'subcategories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
