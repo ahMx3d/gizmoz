@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MainCateRequest;
+use App\Http\Requests\Admin\CateRequest;
 use App\Models\Cate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +81,7 @@ class SubcatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MainCateRequest $request)
+    public function store(CateRequest $request)
     {
         try {
 

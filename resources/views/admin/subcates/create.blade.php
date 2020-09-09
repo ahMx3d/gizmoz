@@ -126,7 +126,7 @@
 
                                                 <div class="row">
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label for="cate_imag">{{ __('admin/cates.cate_imag') }}</label>
                                                             <input
@@ -142,34 +142,6 @@
                                                                 </div>
                                                             @enderror
 
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="cate_main">{{ __('admin/cates.cate_main') }}</label>
-                                                            <select
-                                                                id="cate_main"
-                                                                name="cate_main"
-                                                                class="custom-select custom-select-lg">
-
-                                                                <option value="">{{ __('admin/cates.cate_main_placeholder') }}</option>
-
-                                                                    @if (isset($cates) && $cates->count() > 0)
-    
-                                                                        @foreach ($cates as $cate)
-                                                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
-                                                                        @endforeach
-                                                                        
-                                                                    @endif
-                                                                    
-                                                                </optgroup>
-                                                            </select>
-    
-                                                            @error('cate_main')
-                                                                <span class="text-danger">{{$message}}</span>
-                                                            @enderror
-                                                            
                                                         </div>
                                                     </div>
 
@@ -197,6 +169,36 @@
                                                         </div>
                                                     </div>
 
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="cate_main">{{ __('admin/cates.cate_main') }}</label>
+                                                            <select
+                                                                id="cate_main"
+                                                                name="cate_main"
+                                                                class="custom-select custom-select-lg">
+
+                                                                <option value="">{{ __('admin/cates.cate_main_placeholder') }}</option>
+
+                                                                    @if (isset($cates) && $cates->count() > 0)
+    
+                                                                        @foreach ($cates as $cate)
+                                                                            <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                                                        @endforeach
+                                                                        
+                                                                    @endif
+                                                                    
+                                                                </optgroup>
+                                                            </select>
+    
+                                                            @error('cate_main')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                            
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>

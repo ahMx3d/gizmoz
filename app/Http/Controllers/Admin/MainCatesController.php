@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MainCateRequest;
+use App\Http\Requests\Admin\CateRequest;
 use App\Models\Cate;
 use App\Traits\Admin\DBHelpers;
 use Illuminate\Http\Request;
@@ -67,7 +67,7 @@ class MainCatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MainCateRequest $request)
+    public function store(CateRequest $request)
     {
         try {
 
@@ -219,7 +219,7 @@ class MainCatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MainCateRequest $request, $id)
+    public function update(CateRequest $request, $id)
     {
         try {
 

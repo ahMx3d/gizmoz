@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminLoginRequest;
+use App\Http\Requests\Admin\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -16,7 +16,7 @@ class LoginController extends Controller
     }
 
     // LOGIN ADMIN TO DASHBOARD
-    public function login(AdminLoginRequest $request)
+    public function login(LoginRequest $request)
     {
         try {
 
