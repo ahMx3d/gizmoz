@@ -44,6 +44,7 @@ class SubcatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the admin dashboard.
             return Utilities::redirectWithMSG(
                 'admin.dashboard',
                 'error',
@@ -74,13 +75,13 @@ class SubcatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the subcategories index.
             return Utilities::redirectWithMSG(
                 'subcategories.index',
                 'error',
                 'catch_error'
             );
         }
-        
     }
 
     /**
@@ -138,7 +139,8 @@ class SubcatesController extends Controller
              * Commit database transactions.
              */
             DB::commit();
-
+            
+            // Redirect with success message to the subcategories index.
             return Utilities::redirectWithMSG(
                 'subcategories.index',
                 'success',
@@ -151,6 +153,7 @@ class SubcatesController extends Controller
              */
             DB::rollback();
 
+            // Redirect with error message to the subcategories create.
             return Utilities::redirectWithMSG(
                 'subcategories.create',
                 'error',
@@ -167,7 +170,39 @@ class SubcatesController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            /**
+             * The database category.
+             * 
+             * @var object
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id
+            );
+
+            if (!$cate) {
+                // Redirect with error message to the subcategories index.
+                return Utilities::redirectWithMSG(
+                    'subcategories.index',
+                    'error',
+                    'db_error'
+                );
+            }
+
+            return view(
+                'admin.subcates.show',
+                compact('cate')
+            );
+        } catch (\Throwable $th) {
+
+            // Redirect with error message to the subcategories index.
+            return Utilities::redirectWithMSG(
+                'subcategories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
@@ -182,17 +217,21 @@ class SubcatesController extends Controller
             /**
              * The database category.
              * 
-             * @param \App\Models\Cate
-             * @param int $id
-             * @param string $redirectionRoute
-             * 
-             * @var object || @return \Illuminate\Http\Response
+             * @var object
              */
             $cate = $this->getRowByID(
                 Cate::class,
-                $id,
-                'subcategories.index'
+                $id
             );
+
+            if (!$cate) {
+                // Redirect with error message to the subcategories index.
+                return Utilities::redirectWithMSG(
+                    'subcategories.index',
+                    'error',
+                    'db_error'
+                );
+            }
 
             /**
              * The database categories.
@@ -210,6 +249,7 @@ class SubcatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the subcategories index.
             return Utilities::redirectWithMSG(
                 'subcategories.index',
                 'error',
@@ -225,9 +265,108 @@ class SubcatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CateRequest $request, $id)
     {
-        //
+        try {
+
+            /**
+             * The database category.
+             * 
+             * @var object
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id
+            );
+
+            if (!$cate) {
+                // Redirect with error message to the subcategories index.
+                return Utilities::redirectWithMSG(
+                    'subcategories.index',
+                    'error',
+                    'db_error'
+                );
+            }
+
+            // Check whether any value is changed.
+            if (
+                $cate->name != $request->input('cate_name')
+                ||
+                $cate->slug != $request->input('cate_slug')
+                ||
+                $cate->status != $request->input('cate_stat')
+                ||
+                $cate->parent_id != $request->input('cate_main')
+            ) {
+
+                /**
+                 * Check whether request has status checked box.
+                 */
+                if (!$request->has('cate_stat')) {
+
+                    /**
+                     * Add request status value of zero.
+                     */
+                    $request->request->add([
+                        'cate_stat' => 0
+                    ]);
+                } else {
+
+                    /**
+                     * Add request status value of one.
+                     */
+                    $request->request->add([
+                        'cate_stat' => 1
+                    ]);
+                }
+
+                /**
+                 * Start database transactions.
+                 */
+                DB::beginTransaction();
+
+                /**
+                 * Update slug & status in cates table.
+                 */
+                $cate->update([
+                    'slug'      => $request->input('cate_slug'),
+                    'status'    => $request->input('cate_stat'),
+                    'parent_id' => $request->input('cate_main')
+                ]);
+
+                /**
+                 * Update name in cate_translations table.
+                 */
+                $cate->name = $request->input('cate_name');
+                $cate->save();
+
+                /**
+                 * Commit database transactions.
+                 */
+                DB::commit();
+            }
+
+            // Redirect with success message to the subcategories index.
+            return Utilities::redirectWithMSG(
+                'subcategories.index',
+                'success',
+                'update_mess'
+            );
+        } catch (\Throwable $th) {
+
+            /**
+             * Rollback database transactions.
+             */
+            DB::rollback();
+
+            // Redirect with error message to the subcategories edit.
+            return Utilities::redirectWithMSG(
+                'subcategories.edit',
+                'error',
+                'catch_error',
+                $id
+            );
+        }
     }
 
     /**
@@ -238,6 +377,46 @@ class SubcatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+
+            /**
+             * The database category.
+             * @var object
+             */
+            $cate = $this->getRowByID(
+                Cate::class,
+                $id
+            );
+
+            if (!$cate) {
+                // Redirect with error message to the subcategories index.
+                return Utilities::redirectWithMSG(
+                    'subcategories.index',
+                    'error',
+                    'db_error'
+                );
+            }
+
+            /**
+             * Delete Category row from database table.
+             * 
+             */
+            $cate->delete();
+
+            // Redirect with success message to the subcategories index.
+            return Utilities::redirectWithMSG(
+                'subcategories.index',
+                'success',
+                'delete_mess'
+            );
+        } catch (\Throwable $th) {
+
+            // Redirect with error message to the subcategories index.
+            return Utilities::redirectWithMSG(
+                'subcategories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 }

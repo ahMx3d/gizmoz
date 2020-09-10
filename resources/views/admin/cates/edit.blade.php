@@ -132,7 +132,7 @@
                                                         <label for="cate_slug">{{ __('admin/cates.cate_slug') }}</label>
                                                         <input
                                                             type="text"
-                                                            value="{{old('cate_slug', $cate->slug)}}"
+                                                            value="{{old('slug', $cate->slug)}}"
                                                             id="cate_slug"
                                                             name="cate_slug"
                                                             class="form-control"

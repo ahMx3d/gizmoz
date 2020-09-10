@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', __("admin/cates.show_page_title"))
+@section('title', __("admin/cates.subcates_show_page_title"))
 
 @section('content')
 <div class="app-content content">
@@ -16,8 +16,8 @@
                                 </a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('main-categories.index') }}">
-                                    <span>{{ __('admin/cates.main_cates') }}</span>
+                                <a href="{{ route('subcategories.index') }}">
+                                    <span>{{ __('admin/cates.subcates') }}</span>
                                 </a>
                             </li>
                             <li class="breadcrumb-item active">
@@ -35,7 +35,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">{{ __('admin/cates.show_header_title') }}</h4>
+                                <h4 class="card-title">{{ __('admin/cates.subcates_show_header_title') }}</h4>
                                 <a class="heading-elements-toggle">
                                     <i class="la la-ellipsis-v font-medium-3"></i>
                                 </a>
@@ -74,7 +74,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">{{ __('admin/cates.th_name') }}</th>
-                                            <th class="text-center">{{ __('admin/cates.th_sub_cates') }}</th>
+                                            <th class="text-center">{{ __('admin/cates.th_main_cate') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_seo') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_image') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_status') }}</th>
@@ -100,7 +100,7 @@
                                                         aria-label="Basic example">
                                                         
                                                         <a
-                                                            href="{{ route('main-categories.edit', $cate->id) }}"
+                                                            href="{{ route('subcategories.edit', $cate->id) }}"
                                                             class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                             
                                                             <span>{{ __('admin/cates.td_edit') }}</span>
@@ -110,11 +110,11 @@
                                                             href=""
                                                             class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
                                                         
-                                                            <span>{{ __('admin/cates.td_add_sub') }}</span>
+                                                            <span>{{ __('admin/cates.td_add_main') }}</span>
                                                         </a>
                                                         
                                                         <form
-                                                            action="{{ route('main-categories.destroy', $cate->id) }}"
+                                                            action="{{ route('subcategories.destroy', $cate->id) }}"
                                                             method="POST">
 
                                                             @csrf

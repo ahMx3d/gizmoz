@@ -24,16 +24,15 @@ class CateRequest extends FormRequest
     public function rules()
     {
         return [
-            // MAIN CATEGORY VALIDATION RULES
+            //
             'cate_name' => 'required|string|max:100',
             'cate_slug' => 'required|string|unique:cates,slug,' .$this->id,
             'cate_stat' => 'in:0,1',
             // 'cate_imag' => 'required_without:edit|mimes:jpg,jpeg,png',
-            'cate_main' => 'required|exists:cates,id',
+            'cate_main' => 'required_with:sub|exists:cates,id',
         ];
     }
 
-    
     /**
      * Get the validation messages that apply to the request.
      *
@@ -56,8 +55,8 @@ class CateRequest extends FormRequest
             'cate_stat.in'          => __('admin/validation.in'),
 
             // MAIN CATEGORY SELECTION MESSAGES
-            'cate_main.required'    => __('admin/validation.required'),
-            'cate_main.exists'      => __('admin/validation.exists'),
+            'cate_main.required_with'    => __('admin/validation.required'),
+            'cate_main.exists'           => __('admin/validation.exists'),
 
         ];
     }

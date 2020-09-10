@@ -44,6 +44,7 @@ return [
     'subcates_index_header_title'       => ucfirst('website subcategories'),
     'subcates_create_header_title'      => ucfirst('create subcategory'),
     'subcates_edit_header_title'        => ucfirst('edit subcategory'),
+    'subcates_show_header_title'        => ucfirst('show subcategory'),
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
@@ -51,6 +52,7 @@ return [
         ############################# START TABLE HEADERS ########################
         'th_name'       => ucfirst('name'),
         'th_sub_cates'  => ucfirst('subcategories'),
+        'th_main_cate' => ucfirst('main category'),
         'th_seo'        => ucfirst('slug'),
         'th_image'      => ucfirst('image'),
         'th_status'     => ucfirst('status'),
@@ -65,6 +67,7 @@ return [
         'td_edit'           => ucfirst('edit'),
         'show_main_cate'    => ucfirst('show category'),
         'td_add_sub'        => ucfirst('add subcategory'),
+        'td_add_main'       => ucfirst('add main category'),
         'td_activate'       => ucfirst('activate'),
         'td_deactivate'     => ucfirst('deactivate'),
         'td_destroy'        => ucfirst('delete'),

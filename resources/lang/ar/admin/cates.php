@@ -44,6 +44,7 @@ return [
     'subcates_index_header_title'       => 'اقسام الموقع الفرعيه',
     'subcates_create_header_title'      => 'اضافة قسم فرعى',
     'subcates_edit_header_title'        => 'تعديل قسم فرعى',
+    'subcates_show_header_title'        => 'عرض قسم فرعى',
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
@@ -51,6 +52,7 @@ return [
         ############################# START TABLE HEADERS ########################
         'th_name'       => 'الإسم',
         'th_sub_cates'  => 'الاقسام الفرعيه',
+        'th_main_cate'  => 'القسم الرئيسى',
         'th_seo'        => 'الإسم الأمثل',
         'th_image'      => 'الصوره',
         'th_status'     => 'الحالة',
@@ -65,6 +67,7 @@ return [
         'td_edit'           => 'تعديل',
         'show_main_cate'    => 'عرض القسم',
         'td_add_sub'        => 'اضافة قسم فرعي',
+        'td_add_main'       => 'اضافة قسم رئيسى',
         'td_activate'       => 'تفعيل',
         'td_deactivate'     => 'إلغاء تفعيل',
         'td_destroy'        => 'حذف',

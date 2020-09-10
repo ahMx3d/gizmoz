@@ -148,17 +148,21 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @param \App\Models\Cate
-             * @param int $id
-             * @param string $redirectionRoute
-             * 
-             * @var object || @return \Illuminate\Http\Response
+             * @var object
              */
             $cate = $this->getRowByID(
                 Cate::class,
-                $id,
-                'main-categories.index'
+                $id
             );
+
+            if (!$cate) {
+                // Redirect with error message to the main categories index.
+                return Utilities::redirectWithMSG(
+                    'main-categories.index',
+                    'error',
+                    'db_error'
+                );
+            }
 
             return view(
                 'admin.cates.show',
@@ -166,6 +170,7 @@ class MainCatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the main categories index.
             return Utilities::redirectWithMSG(
                 'main-categories.index',
                 'error',
@@ -186,17 +191,21 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @param \App\Models\Cate
-             * @param int $id
-             * @param string $redirectionRoute
-             * 
-             * @var object || @return \Illuminate\Http\Response
+             * @var object
              */
             $cate = $this->getRowByID(
                 Cate::class,
-                $id,
-                'main-categories.index'
+                $id
             );
+
+            if (!$cate) {
+                // Redirect with error message to the main categories index.
+                return Utilities::redirectWithMSG(
+                    'main-categories.index',
+                    'error',
+                    'db_error'
+                );
+            }
 
             return view(
                 'admin.cates.edit',
@@ -204,6 +213,7 @@ class MainCatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the main categories index.
             return Utilities::redirectWithMSG(
                 'main-categories.index',
                 'error',
@@ -226,17 +236,21 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @param \App\Models\Cate
-             * @param int $id
-             * @param string $redirectionRoute
-             *
-             * @var object || @return \Illuminate\Http\Response
+             * @var object
              */
             $cate = $this->getRowByID(
                 Cate::class,
-                $id,
-                'main-categories.index'
+                $id
             );
+
+            if (!$cate) {
+                // Redirect with error message to the main categories index.
+                return Utilities::redirectWithMSG(
+                    'main-categories.index',
+                    'error',
+                    'db_error'
+                );
+            }
 
             /**
              * Check whether any value is changed.
@@ -295,6 +309,7 @@ class MainCatesController extends Controller
                 DB::commit();
             }
 
+            // Redirect with success message to the main categories index.
             return Utilities::redirectWithMSG(
                 'main-categories.index',
                 'success',
@@ -307,6 +322,7 @@ class MainCatesController extends Controller
              */
             DB::rollback();
 
+            // Redirect with error message to the main categories edit.
             return Utilities::redirectWithMSG(
                 'main-categories.edit',
                 'error',
@@ -329,24 +345,26 @@ class MainCatesController extends Controller
             /**
              * The database category.
              * 
-             * @param \App\Models\Cate
-             * @param int $id
-             * @param string $redirectionRoute
-             *
-             * @var object || @return \Illuminate\Http\Response
+             * @var object
              */
             $cate = $this->getRowByID(
                 Cate::class,
-                $id,
-                'main-categories.index'
+                $id
             );
 
-            /**
-             * Delete Category row from database table.
-             * 
-             */
+            if (!$cate) {
+                // Redirect with error message to the main categories index.
+                return Utilities::redirectWithMSG(
+                    'main-categories.index',
+                    'error',
+                    'db_error'
+                );
+            }
+
+            // Delete Category row from database table.
             $cate->delete();
 
+            // Redirect with success message to the main categories index.
             return Utilities::redirectWithMSG(
                 'main-categories.index',
                 'success',
@@ -354,6 +372,7 @@ class MainCatesController extends Controller
             );
         } catch (\Throwable $th) {
 
+            // Redirect with error message to the main categories index.
             return Utilities::redirectWithMSG(
                 'main-categories.index',
                 'error',

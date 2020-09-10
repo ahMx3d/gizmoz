@@ -78,6 +78,11 @@
 
                                             @csrf
                                             
+                                            <input
+                                                type="hidden"
+                                                name="sub"
+                                                value="" />
+
                                             <div class="form-body">
                                                 <h4 class="form-section">
                                                     <i class="ft-home"></i>

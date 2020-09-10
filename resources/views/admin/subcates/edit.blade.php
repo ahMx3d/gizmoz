@@ -86,6 +86,11 @@
                                             type="hidden"
                                             name="id"
                                             value="{{$cate->id}}" />
+
+                                        <input
+                                            type="hidden"
+                                            name="sub"
+                                            value="" />
                                         
                                         <div class="form-body">
                                             <h4 class="form-section">
@@ -132,7 +137,7 @@
                                                         <label for="cate_slug">{{ __('admin/cates.cate_slug') }}</label>
                                                         <input
                                                             type="text"
-                                                            value="{{old('cate_slug', $cate->slug)}}"
+                                                            value="{{old('slug', $cate->slug)}}"
                                                             id="cate_slug"
                                                             name="cate_slug"
                                                             class="form-control"
@@ -180,7 +185,7 @@
                                                             id="switcheryColor4"
                                                             class="switchery"
                                                             data-color="success"
-                                                            {{(old('cate_stat', $cate->status) == true)? 'checked': ''}} />
+                                                            {{(old('status', $cate->status) == true)? 'checked': ''}} />
 
                                                         @error('cate_stat')
                                                             <div>
@@ -208,8 +213,8 @@
 
                                                                     @foreach ($mainCates as $mainCate)
                                                                         <option
-                                                                            value="{{$mainCate->id}}"
-                                                                            {{(old('cate_main', $mainCate->id) == $cate->parent_id)? 'selected': ''}}>{{$mainCate->name}}</option>
+                                                                            value="{{old('id', $mainCate->id)}}"
+                                                                            {{(old('id', $mainCate->id) == $cate->parent_id)? 'selected': ''}}>{{$mainCate->name}}</option>
                                                                     @endforeach
                                                                     
                                                                 @endif
