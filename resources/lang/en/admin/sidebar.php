@@ -17,9 +17,13 @@ return [
     'main_page' => ucfirst('dashboard'),
     'view_all'  => ucfirst('view all'),
     'add_new'   => ucfirst('add new'),
+    'main_cate' => ucfirst('main category'),
+    'subcate'   => ucfirst('subcategory'),
     ############################## END GLOBALS #########################
 
     ############################# START GENERAL TABS ########################
+    'cates'      => ucfirst('categories'),
+    'all_cates'  => ucfirst('all categories'),
     'main_cates' => ucfirst('main categories'),
     'subcates'   => ucfirst('subcategories'),
     ############################## END GENERAL TABS #########################

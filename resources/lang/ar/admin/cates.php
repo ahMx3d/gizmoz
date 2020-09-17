@@ -13,6 +13,35 @@ return [
     |
     */
 
+    ############################# START CATEGORIES TITLES ########################
+    'index_title'           => 'الاقسام',
+    'index_main_heading'    => 'الاقسام',
+    'index_card_title'      => 'جميع الاقسام',
+    ############################## END CATEGORIES TITLES #########################
+
+    ############################# START CATEGORIES FILTER ########################
+    'index_card_filter_by'           => 'تصنيف بواسطة',
+    'index_card_filter_by_name_asc'  => 'تصاعديا',
+    'index_card_filter_by_name_desc' => 'تنازليا',
+    'index_card_filter_by_type'      => 'النوع',
+    'index_card_filter_by_oldest'    => 'الأقدم',
+    'index_card_filter_by_newest'    => 'الأحدث',
+    'index_card_filter_by_status'    => 'الحاله',
+    'index_card_filter_by_active'    => 'مفعل',
+    'index_card_filter_by_pending'   => 'غير مفعل',
+    ############################## END CATEGORIES FILTER #########################
+
+    ############################# START BREADCRUMB ########################
+    'dashboard'                 => 'الرئيسيه',
+    'breadcrumb_index_title'    => 'كل اقسام الموقع',
+    'breadcrumb_index_add_new'  => 'اضافة قسم جديد',
+    'breadcrumb_index_dropdown_main'  => 'رئيسى',
+    'breadcrumb_index_dropdown_sub'   => 'فرعى',
+    'breadcrumb_index_dropdown_all'   => 'كل الاقسام',
+    'breadcrumb_index_dropdown_all_main'   => 'الرئيسيه',
+    'breadcrumb_index_dropdown_all_sub'    => 'الفرعيه',
+    ############################# END BREADCRUMB ##########################
+
     ############################# START PAGE TITLES ########################
     'index_page_title'  => 'الاقسام الرئيسيه',
     'edit_page_title'   => 'تعديل قسم رئيسى',
@@ -56,16 +85,21 @@ return [
         'th_seo'        => 'الإسم الأمثل',
         'th_image'      => 'الصوره',
         'th_status'     => 'الحالة',
+        'th_type'       => 'نوع القسم',
         'th_actions'    => 'الإجراءات',
+        'th_updated_at' => 'تاريخ التحديث',
         ############################# END TABLE HEADERS ##########################
     
         ############################# START TABLE DATA ########################
         'td_img_alt'    => 'صورة القسم',
+        'td_no_main'    => 'لا توجد اقسام رئيسيه حتى الآن',
+        'td_no_sub'     => 'لا توجد اقسام فرعيه حتى الآن',
         ############################# END TABLE DATA ##########################
 
         ############################# START TABLE ACTIONS ########################
         'td_edit'           => 'تعديل',
-        'show_main_cate'    => 'عرض القسم',
+        'show_main_cate'    => 'عرض القسم الرئيسى',
+        'show_sub_cate'     => 'عرض الاقسام الفرعيه',
         'td_add_sub'        => 'اضافة قسم فرعي',
         'td_add_main'       => 'اضافة قسم رئيسى',
         'td_activate'       => 'تفعيل',
@@ -74,8 +108,10 @@ return [
         ############################# END TABLE ACTIONS ##########################
 
         ############################# START TABLE MODEL DATA ########################
-        'model_active'  => 'مفعل',
-        'model_pending'  => 'غير مفعل',
+        'model_active'      => 'مفعل',
+        'model_pending'     => 'غير مفعل',
+        'model_type_main'   => 'قسم رئيسى',
+        'model_type_sub'    => 'قسم فرعى',
         ############################# END TABLE MODEL DATA ##########################
         
         ############################# START FORM LAYOUT ########################

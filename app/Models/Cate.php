@@ -3,7 +3,12 @@
 namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
+use App\QueryFilters\Category\Name;
+use App\QueryFilters\Category\Order;
+use App\QueryFilters\Category\Status;
+use App\QueryFilters\Category\Type;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pipeline\Pipeline;
 
 class Cate extends Model
 {
@@ -14,7 +19,7 @@ class Cate extends Model
     use Translatable;
 
     /**
-     * The model's equivelant table name.
+     * The model's equivalent table name.
      * 
      * @var string
      */
@@ -84,7 +89,7 @@ class Cate extends Model
      * Child category scope.
      * filters items where the given key is not null.
      * 
-     * @param query
+     * @param object
      * @return clause
      */
 
@@ -94,13 +99,74 @@ class Cate extends Model
     }
 
     /**
+     * Categories descending scope.
+     *
+     * @param object $query
+     * @return array
+     */
+    public function scopeDescCates($query)
+    {
+        return $query->orderBy(
+            'id',
+            'DESC'
+        );
+    }
+
+    /**
+     * Categories ascending scope.
+     *
+     * @param object $query
+     * @return array
+     */
+    public function scopeAscCates($query)
+    {
+        return $query->orderBy(
+            'id',
+            'ASC'
+        );
+    }
+
+    /**
      * Displays category status as a string.
      * 
      * @return string
      */
     public function getStatus()
     {
-        return ($this->status == true)? __('admin/cates.model_active'): __('admin/cates.model_pending');
+        return ($this->status == true) ? __('admin/cates.model_active') : __('admin/cates.model_pending');
     }
-    
+
+    /**
+     * Model's main categories relationships.
+     *
+     * @return object
+     */
+    public function mainCate()
+    {
+        return $this->belongsTo(self::class, 'parent_id', 'id');
+    }
+
+    /**
+     * Model's subcategories relationships.
+     *
+     * @return array
+     */
+    public function subcates()
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public static function allCates()
+    {
+        return app(
+            Pipeline::class
+        )->send(
+            self::descCates()
+        )->through([
+            Type::class,
+            Name::class,
+            Order::class,
+            Status::class,
+        ])->thenReturn()->paginate(PAGINATION_COUNT);
+    }
 }
