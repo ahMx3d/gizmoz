@@ -47,13 +47,13 @@
                                                  <ul class="menu-content">
                                                         <li>
                                                                <a
-                                                                      href="{{ route('categories.create') }}"
+                                                                      href="{{ route('categories.create'). '?create=main' }}"
                                                                       data-i18n="nav.templates.vert.classic_menu"
                                                                       class="menu-item">{{ __('admin/sidebar.main_cate') }}</a>
                                                         </li>
                                                         <li>
                                                                <a
-                                                                      href="{{ route('categories.create') }}"
+                                                                      href="{{ route('categories.create'). '?create=sub' }}"
                                                                       class="menu-item">{{ __('admin/sidebar.subcate') }}</a>
                                                         </li>
                                                  </ul>

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Cate;
+use App\QueryFilters\Category\Create;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 
 class CategoriesController extends Controller
 {
@@ -35,8 +38,11 @@ class CategoriesController extends Controller
     public function index()
     {
         try {
-            
-            // $cates = Cate::allCates();
+            /**
+             * All filtered categories pipelines in a descending order.
+             *
+             * @var object
+             */
             $cates = $this->categoryRepository->allCatesDescWithFilters();
 
             return view(
@@ -61,7 +67,27 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            /**
+             * All filtered main categories pipeline in a descending order.
+             *
+             * @var object
+             */
+            $mainCatesForSub = $this->categoryRepository->mainCatesToCreateSubcate();
+
+            return view(
+                'admin.categories.create',
+                compact('mainCatesForSub')
+            );
+        } catch (\Throwable $th) {
+
+            // Redirect with error message to the admin dashboard.
+            return Utilities::redirectWithMSG(
+                'admin.dashboard',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
@@ -70,9 +96,14 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        // try {
+
+        // } catch (\Throwable $th) {
+
+        // }
+        return $request;
     }
 
     /**

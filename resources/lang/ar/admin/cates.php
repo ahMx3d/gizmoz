@@ -15,6 +15,7 @@ return [
 
     ############################# START CATEGORIES TITLES ########################
     'index_title'           => 'الاقسام',
+    'create_title'          => 'اضافة قسم جديد',
     'index_main_heading'    => 'الاقسام',
     'index_card_title'      => 'جميع الاقسام',
     ############################## END CATEGORIES TITLES #########################
@@ -31,7 +32,7 @@ return [
     'index_card_filter_by_pending'   => 'غير مفعل',
     ############################## END CATEGORIES FILTER #########################
 
-    ############################# START BREADCRUMB ########################
+    ############################# START CATEGORIES BREADCRUMB ########################
     'dashboard'                 => 'الرئيسيه',
     'breadcrumb_index_title'    => 'كل اقسام الموقع',
     'breadcrumb_index_add_new'  => 'اضافة قسم جديد',
@@ -40,7 +41,12 @@ return [
     'breadcrumb_index_dropdown_all'   => 'كل الاقسام',
     'breadcrumb_index_dropdown_all_main'   => 'الرئيسيه',
     'breadcrumb_index_dropdown_all_sub'    => 'الفرعيه',
-    ############################# END BREADCRUMB ##########################
+    ############################# END CATEGORIES BREADCRUMB ##########################
+
+    ############################# START CATEGORIES CARD HEADER ########################
+    'main_cate_create_header_title' => 'اضافة قسم رئيسى',
+    'subcate_create_header_title'   => 'اضافة قسم فرعى',
+    ############################## END CATEGORIES CARD HEADER #########################
 
     ############################# START PAGE TITLES ########################
     'index_page_title'  => 'الاقسام الرئيسيه',
@@ -77,7 +83,7 @@ return [
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
-    
+
         ############################# START TABLE HEADERS ########################
         'th_name'       => 'الإسم',
         'th_sub_cates'  => 'الاقسام الفرعيه',
@@ -89,7 +95,7 @@ return [
         'th_actions'    => 'الإجراءات',
         'th_updated_at' => 'تاريخ التحديث',
         ############################# END TABLE HEADERS ##########################
-    
+
         ############################# START TABLE DATA ########################
         'td_img_alt'    => 'صورة القسم',
         'td_no_main'    => 'لا توجد اقسام رئيسيه حتى الآن',
@@ -113,7 +119,7 @@ return [
         'model_type_main'   => 'قسم رئيسى',
         'model_type_sub'    => 'قسم فرعى',
         ############################# END TABLE MODEL DATA ##########################
-        
+
         ############################# START FORM LAYOUT ########################
         'edit_details'      => 'التفاصيل',
         'create_details'    => 'التفاصيل',
@@ -132,14 +138,14 @@ return [
         'cate_slug_placeholder' => 'ادخل الإسم الأمثل لمحركات البحث',
         'cate_main_placeholder' => 'اختر القسم الرئيسى',
         ############################# END FORM PLACEHOLDERS ##########################
-        
+
         ############################# START FORM ACTIONS ########################
         'cate_update_action' => 'تحديث',
         'cate_create_action' => 'حفظ',
         'cate_cancel_action' => 'تراجع',
         ############################# END FORM ACTIONS ##########################
 
-    
+
     ############################# END CARD CONTENT ##########################
 
 ];

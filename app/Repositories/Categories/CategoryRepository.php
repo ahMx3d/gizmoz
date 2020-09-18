@@ -15,7 +15,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Cate::all()->count();
     }
-    
+
     /**
      * Main categories count.
      *
@@ -25,7 +25,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Cate::parentCate()->count();
     }
-    
+
     /**
      * Subcategories count.
      *
@@ -35,7 +35,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Cate::childCate()->count();
     }
-    
+
     /**
      * Categories in descending order.
      *
@@ -45,7 +45,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Cate::descCates();
     }
-    
+
     /**
      * Categories in descending order and their filters pipelines.
      *
@@ -54,5 +54,15 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function allCatesDescWithFilters()
     {
         return Cate::allCates();
+    }
+
+    /**
+     * Pipeline filtered main categories in descending order.
+     *
+     * @return mixed
+     */
+    public function mainCatesToCreateSubcate()
+    {
+        return Cate::mainCatesCreated();
     }
 }

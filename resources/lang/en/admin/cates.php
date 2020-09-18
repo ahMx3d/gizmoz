@@ -15,10 +15,11 @@ return [
 
     ############################# START CATEGORIES TITLES ########################
     'index_title'           => ucfirst('categories'),
+    'create_title'          => ucfirst('create new category'),
     'index_main_heading'    => ucfirst('categories'),
     'index_card_title'      => ucfirst('all categories'),
     ############################# START CATEGORIES TITLES ########################
-    
+
     ############################# START CATEGORIES FILTER ########################
     'index_card_filter_by'              => ucfirst('filter by'),
     'index_card_filter_by_name_asc'     => ucfirst('ascending'),
@@ -31,7 +32,7 @@ return [
     'index_card_filter_by_pending'      => ucfirst('pending'),
     ############################## END CATEGORIES FILTER #########################
 
-    ############################# START BREADCRUMB ########################
+    ############################# START CATEGORIES BREADCRUMB ########################
     'dashboard'                 => ucfirst('dashboard'),
     'breadcrumb_index_title'    => ucfirst('all categories'),
     'breadcrumb_index_add_new'  => ucfirst('create new'),
@@ -40,7 +41,12 @@ return [
     'breadcrumb_index_dropdown_all'   => ucfirst('all categories'),
     'breadcrumb_index_dropdown_all_main'   => ucfirst('main categories'),
     'breadcrumb_index_dropdown_all_sub'    => ucfirst('subcategories'),
-    ############################# END BREADCRUMB ##########################
+    ############################# END CATEGORIES BREADCRUMB ##########################
+
+    ############################# START CATEGORIES CARD HEADER ########################
+    'main_cate_create_header_title' => ucfirst('create main category'),
+    'subcate_create_header_title'   => ucfirst('create sub category'),
+    ############################## END CATEGORIES CARD HEADER #########################
 
     ############################# START PAGE TITLES ########################
     'index_page_title'  => ucfirst('main categories'),
@@ -77,7 +83,7 @@ return [
     ############################# END CARD HEADER ##########################
 
     ############################# START CARD CONTENT ########################
-    
+
         ############################# START TABLE HEADERS ########################
         'th_name'       => ucfirst('name'),
         'th_sub_cates'  => ucfirst('subcategories'),
@@ -89,13 +95,13 @@ return [
         'th_actions'    => ucfirst('actions'),
         'th_updated_at' => ucfirst('update date'),
         ############################# END TABLE HEADERS ##########################
-        
+
         ############################# START TABLE DATA ########################
         'td_img_alt'    => ucfirst('category image'),
         'td_no_main'    => ucfirst('No main categories yet'),
         'td_no_sub'     => ucfirst('No subcategories yet'),
         ############################# END TABLE DATA ##########################
-        
+
         ############################# START TABLE ACTIONS ########################
         'td_edit'           => ucfirst('edit'),
         'show_main_cate'    => ucfirst('show main category'),
@@ -106,14 +112,14 @@ return [
         'td_deactivate'     => ucfirst('deactivate'),
         'td_destroy'        => ucfirst('delete'),
         ############################# END TABLE ACTIONS ##########################
-        
+
         ############################# START TABLE MODEL DATA ########################
         'model_active'      => ucfirst('active'),
         'model_pending'     => ucfirst('pending'),
         'model_type_main'   => ucfirst('main category'),
         'model_type_sub'    => ucfirst('subcategory'),
         ############################# END TABLE MODEL DATA ##########################
-        
+
         ############################# START FORM LAYOUT ########################
         'edit_details'      => ucfirst('details'),
         'create_details'    => ucfirst('details'),
@@ -132,14 +138,14 @@ return [
         'cate_slug_placeholder' => ucfirst('enter category SEO name'),
         'cate_main_placeholder' => ucfirst('select main category'),
         ############################# END FORM PLACEHOLDERS ##########################
-        
+
         ############################# START FORM ACTIONS ########################
         'cate_update_action' => ucfirst('update'),
         'cate_create_action' => ucfirst('save'),
         'cate_cancel_action' => ucfirst('cancel'),
         ############################# END FORM ACTIONS ##########################
 
-    
+
     ############################# END CARD CONTENT ##########################
 
 ];

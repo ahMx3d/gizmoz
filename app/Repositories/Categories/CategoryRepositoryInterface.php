@@ -13,4 +13,6 @@ interface CategoryRepositoryInterface
     public function allCatesDesc();
 
     public function allCatesDescWithFilters();
+
+    public function mainCatesToCreateSubcate();
 }

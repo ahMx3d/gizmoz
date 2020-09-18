@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
+use App\QueryFilters\Category\Create;
 use App\QueryFilters\Category\Name;
 use App\QueryFilters\Category\Order;
 use App\QueryFilters\Category\Status;
@@ -20,28 +21,28 @@ class Cate extends Model
 
     /**
      * The model's equivalent table name.
-     * 
+     *
      * @var string
      */
     protected $table = 'cates';
 
     /**
      * The relations to eager load on every query.
-     * 
+     *
      * @var array
      */
     protected $with = ['translations'];
 
     /**
-     * The attributes to be translated 
-     * 
+     * The attributes to be translated
+     *
      * @var array
      */
     protected $translatedAttributes = ['name'];
 
     /**
      * The attributes that are mass assignable.
-     * 
+     *
      * @var array
      */
     protected $fillable = [
@@ -54,7 +55,7 @@ class Cate extends Model
 
     /**
      * The attributes that should be hidden for serialization.
-     * 
+     *
      * @var array
      */
     protected $hidden = [
@@ -65,7 +66,7 @@ class Cate extends Model
 
     /**
      * The attributes that should be cast to native types.
-     * 
+     *
      * @var array
      */
     protected $casts = [
@@ -75,7 +76,7 @@ class Cate extends Model
     /**
      * Parent category scope.
      * filters items where the given key is null.
-     * 
+     *
      * @param query
      * @return clause
      */
@@ -88,7 +89,7 @@ class Cate extends Model
     /**
      * Child category scope.
      * filters items where the given key is not null.
-     * 
+     *
      * @param object
      * @return clause
      */
@@ -127,8 +128,23 @@ class Cate extends Model
     }
 
     /**
+     * Query that return nothing needed for filter pipelines.
+     *
+     * @param object $query
+     * @return clause
+     */
+    public function scopeEmptyQuery($query)
+    {
+        return $query->where(
+            'id',
+            '=',
+            0,
+        );
+    }
+
+    /**
      * Displays category status as a string.
-     * 
+     *
      * @return string
      */
     public function getStatus()
@@ -156,6 +172,11 @@ class Cate extends Model
         return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
+    /**
+     * All categories with pipeline filters.
+     *
+     * @return object
+     */
     public static function allCates()
     {
         return app(
@@ -168,5 +189,16 @@ class Cate extends Model
             Order::class,
             Status::class,
         ])->thenReturn()->paginate(PAGINATION_COUNT);
+    }
+
+    public static function mainCatesCreated()
+    {
+        return app(
+            Pipeline::class
+        )->send(
+            self::query()
+        )->through(
+            Create::class
+        )->thenReturn()->get();
     }
 }
