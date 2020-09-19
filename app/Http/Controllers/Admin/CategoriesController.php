@@ -9,6 +9,7 @@ use App\Models\Cate;
 use App\QueryFilters\Category\Create;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Pipeline\Pipeline;
 
 class CategoriesController extends Controller
@@ -98,12 +99,24 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        // try {
+        try {
+            //Store categories into the database.
+            $this->categoryRepository->cateStore($request);
 
-        // } catch (\Throwable $th) {
-
-        // }
-        return $request;
+            // Redirect to categories index table with success message.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'success',
+                'store_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect to categories index table with success message.
+            return Utilities::redirectWithMSG(
+                'main-categories.create',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

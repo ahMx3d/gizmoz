@@ -3,6 +3,7 @@
 namespace App\Repositories\Categories;
 
 use App\Models\Cate;
+use Illuminate\Support\Str;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -64,5 +65,64 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function mainCatesToCreateSubcate()
     {
         return Cate::mainCatesCreated();
+    }
+
+    /**
+     * Store categories.
+     *
+     * @param object $request
+     * @return void
+     */
+    public function cateStore($request)
+    {
+        /**
+         * Create the category slug from its name.
+         *
+         * @var string
+         */
+        $slug = Str::slug($request->input('cate_name'));
+
+        /**
+         * Assign the category status value.
+         */
+        if (!$request->has('cate_stat')) {
+            $request->request->add([
+                'cate_stat' => 0
+            ]);
+        } else {
+            $request->request->add([
+                'cate_stat' => 1
+            ]);
+        }
+
+        /**
+         * Assign main category's parent id of null.
+         */
+        if (!$request->has('cate_main')) {
+
+            $request->request->add([
+                'cate_main' => null
+            ]);
+        }
+
+        /**
+         * Data to be stored into the database.
+         *
+         * @var array
+         */
+        $data = [
+            app()->getLocale() => [
+                'name' => $request->input('cate_name')
+            ],
+            'parent_id' => $request->input('cate_main'),
+            'slug' => $slug,
+            'status' => $request->input('cate_stat')
+        ];
+
+        /**
+         * Database query statement that stores data.
+         */
+        Cate::create($data);
+
     }
 }
