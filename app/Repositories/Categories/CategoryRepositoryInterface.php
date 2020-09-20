@@ -64,6 +64,15 @@ interface CategoryRepositoryInterface
     public function cateStore($request);
 
     /**
+     * Update categories.
+     *
+     * @param object $cate
+     * @param object $request
+     * @return void
+     */
+    public function cateUpdate($cate, $request);
+
+    /**
      * Get category row of an id.
      *
      * @param int $id

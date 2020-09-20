@@ -88,6 +88,98 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function cateStore($request)
     {
+        // /**
+        //  * Create the category slug from its name.
+        //  *
+        //  * @var string
+        //  */
+        // $slug = Str::slug($request->input('cate_name'));
+
+        // /**
+        //  * Assign the category status value.
+        //  */
+        // if (!$request->has('cate_stat')) {
+        //     $request->request->add([
+        //         'cate_stat' => 0
+        //     ]);
+        // } else {
+        //     $request->request->add([
+        //         'cate_stat' => 1
+        //     ]);
+        // }
+
+        // /**
+        //  * Assign main category's parent id of null.
+        //  */
+        // if (!$request->has('cate_main')) {
+
+        //     $request->request->add([
+        //         'cate_main' => null
+        //     ]);
+        // }
+
+        // /**
+        //  * Data to be stored into the database.
+        //  *
+        //  * @var array
+        //  */
+        // $data = [
+        //     app()->getLocale() => [
+        //         'name' => $request->input('cate_name')
+        //     ],
+        //     'parent_id' => $request->input('cate_main'),
+        //     'slug' => $slug,
+        //     'status' => $request->input('cate_stat')
+        // ];
+
+        /**
+         * Data to be updated.
+         *
+         * @var array
+         */
+        $data = $this->serveData($request);
+        
+        /**
+         * Database query statement that stores data.
+         */
+        Cate::create($data);
+    }
+
+    /**
+     * Update categories.
+     *
+     * @param object $cate
+     * @param object $request
+     * @return void
+     */
+    public function cateUpdate($cate, $request)
+    {
+        if (    // Check whether any value has been changed.
+            $cate->name != $request->input('cate_name') ||
+            $cate->status != $request->input('cate_stat') ||
+            $cate->parent_id != $request->input('cate_main')
+        ) {
+            /**
+             * Data to be updated.
+             *
+             * @var array
+             */
+            $data = $this->serveData($request);
+            // Database update query statement.
+            $cate->update($data);
+        }
+        // Nothing changed you are joking.
+        return;
+    }
+
+    /**
+     * Data to be stored into the database.
+     *
+     * @param object $request
+     * @return array
+     */
+    private function serveData($request)
+    {
         /**
          * Create the category slug from its name.
          *
@@ -118,12 +210,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             ]);
         }
 
-        /**
-         * Data to be stored into the database.
-         *
-         * @var array
-         */
-        $data = [
+        return [
             app()->getLocale() => [
                 'name' => $request->input('cate_name')
             ],
@@ -131,11 +218,6 @@ class CategoryRepository implements CategoryRepositoryInterface
             'slug' => $slug,
             'status' => $request->input('cate_stat')
         ];
-
-        /**
-         * Database query statement that stores data.
-         */
-        Cate::create($data);
     }
 
     /**

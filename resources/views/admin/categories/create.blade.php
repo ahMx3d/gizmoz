@@ -203,7 +203,8 @@
                                                                     label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
                                                                 <option
                                                                     label="{{ __('admin/cates.cate_main_placeholder') }}"
-                                                                    disabled
+                                                                    selected
+                                                                    {{-- disabled --}}
                                                                     value="0">
                                                                     {{ __('admin/cates.cate_main_placeholder') }}
                                                                 </option>

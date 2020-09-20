@@ -82,9 +82,9 @@ class CategoriesController extends Controller
             );
         } catch (\Throwable $th) {
 
-            // Redirect with error message to the admin dashboard.
+            // Redirect with error message to the categories index table.
             return Utilities::redirectWithMSG(
-                'admin.dashboard',
+                'categories.index',
                 'error',
                 'catch_error'
             );
@@ -110,9 +110,9 @@ class CategoriesController extends Controller
                 'store_mess'
             );
         } catch (\Throwable $th) {
-            // Redirect to categories index table with success message.
+            // Redirect to categories create view with error message.
             return Utilities::redirectWithMSG(
-                'main-categories.create',
+                'categories.create',
                 'error',
                 'catch_error'
             );
@@ -135,7 +135,7 @@ class CategoriesController extends Controller
              */
             $cate = $this->categoryRepository->findCateRowById($id);
 
-            // Redirect with error message to the main categories index.
+            // Redirect with error message to the categories index table.
             if (!$cate) return Utilities::redirectWithMSG(
                 'categories.index',
                 'error',
@@ -147,7 +147,7 @@ class CategoriesController extends Controller
                 compact('cate')
             );
         } catch (\Throwable $th) {
-            // Redirect with error message to the main categories index.
+            // Redirect with error message to the categories index table.
             return Utilities::redirectWithMSG(
                 'categories.index',
                 'error',
@@ -172,7 +172,7 @@ class CategoriesController extends Controller
              */
             $cate = $this->categoryRepository->findCateRowById($id);
 
-            // Redirect with error message to the main categories index.
+            // Redirect with error message to the categories index table.
             if (!$cate) return Utilities::redirectWithMSG(
                 'categories.index',
                 'error',
@@ -194,7 +194,7 @@ class CategoriesController extends Controller
                 )
             );
         } catch (\Throwable $th) {
-            // Redirect with error message to the main categories index.
+            // Redirect with error message to the categories index table.
             return Utilities::redirectWithMSG(
                 'categories.index',
                 'error',
@@ -210,9 +210,44 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        try {
+            /**
+             * Category row.
+             *
+             * @var object
+             */
+            $cate = $this->categoryRepository->findCateRowById($id);
+
+            // Redirect with error message to the categories index table.
+            if (!$cate) return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'db_error'
+            );
+
+            // Update categories into the database.
+            $this->categoryRepository->cateUpdate(
+                $cate,
+                $request
+            );
+
+            // Redirect with success message to the categories index table.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'success',
+                'update_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the categories edit view.
+            return Utilities::redirectWithMSG(
+                'categories.edit',
+                'error',
+                'catch_error',
+                $id
+            );
+        }
     }
 
     /**
