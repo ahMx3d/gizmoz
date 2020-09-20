@@ -138,7 +138,7 @@ class CategoryRepository implements CategoryRepositoryInterface
          * @var array
          */
         $data = $this->serveData($request);
-        
+
         /**
          * Database query statement that stores data.
          */
@@ -170,6 +170,18 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
         // Nothing changed you are joking.
         return;
+    }
+
+    /**
+     * Delete categories.
+     *
+     * @param object $cate
+     * @return void
+     */
+    public function cateDelete($cate)
+    {
+        // Database delete query statement.
+        $cate->delete();
     }
 
     /**

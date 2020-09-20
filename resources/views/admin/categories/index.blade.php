@@ -50,7 +50,7 @@
                                 <table class="table table-responsive display nowrap table-striped table-bordered{{--  scroll-horizontal --}}">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">#</th>
+                                            {{-- <th class="text-center">#</th> --}}
                                             <th class="text-center">{{ __('admin/cates.th_name') }}</th>
                                             <th class="text-center">{{ __('admin/cates.th_seo') }}</th>
                                             {{-- <th class="text-center">{{ __('admin/cates.th_image') }}</th> --}}
@@ -66,7 +66,7 @@
                                             @foreach($cates as $cate)
 
                                                 <tr>
-                                                    <td class="text-center">{{ $cate->id }}</td>
+                                                    {{-- <td class="text-center">{{ $cate->id }}</td> --}}
                                                     <td class="text-center">{{ $cate->name }}</td>
                                                     <td class="text-center">{{ $cate->slug }}</td>
                                                     {{-- <td class="text-center">
@@ -154,7 +154,7 @@
                                                             @endif
 
                                                             <form
-                                                                {{-- action="{{ route('main-categories.destroy', $cate->id) }}" --}}
+                                                                action="{{ route('categories.destroy', $cate->id) }}"
                                                                 method="POST">
 
                                                                 @csrf

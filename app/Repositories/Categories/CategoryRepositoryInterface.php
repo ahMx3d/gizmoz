@@ -73,6 +73,14 @@ interface CategoryRepositoryInterface
     public function cateUpdate($cate, $request);
 
     /**
+     * Delete categories.
+     *
+     * @param object $cate
+     * @return void
+     */
+    public function cateDelete($cate);
+
+    /**
      * Get category row of an id.
      *
      * @param int $id

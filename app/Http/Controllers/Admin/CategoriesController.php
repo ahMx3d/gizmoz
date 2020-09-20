@@ -258,6 +258,37 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            /**
+             * Category row.
+             *
+             * @var object
+             */
+            $cate = $this->categoryRepository->findCateRowById($id);
+
+            // Redirect with error message to the categories index table.
+            if (!$cate) return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'db_error'
+            );
+
+            // Delete categories from the database.
+            $this->categoryRepository->cateDelete($cate);
+
+            // Redirect with success message to the categories index table.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'success',
+                'delete_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the categories index table.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 }
