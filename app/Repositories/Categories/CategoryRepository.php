@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Categories;
 
+use App\Helpers\Admin\Utilities;
 use App\Models\Cate;
 use Illuminate\Support\Str;
 
@@ -59,12 +60,24 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     /**
      * Pipeline filtered main categories in descending order.
+     * Used for create method.
      *
      * @return mixed
      */
     public function mainCatesToCreateSubcate()
     {
         return Cate::mainCatesCreated();
+    }
+
+    /**
+     * Pipeline filtered main categories in descending order.
+     * Used for edit method.
+     *
+     * @return mixed
+     */
+    public function mainCatesToEditSubcate()
+    {
+        return Cate::mainCatesForEdit();
     }
 
     /**
@@ -123,6 +136,16 @@ class CategoryRepository implements CategoryRepositoryInterface
          * Database query statement that stores data.
          */
         Cate::create($data);
+    }
 
+    /**
+     * Get category row of an id.
+     *
+     * @param int $id
+     * @return object
+     */
+    public function findCateRowById($id)
+    {
+        return Cate::find($id);
     }
 }

@@ -16,6 +16,7 @@ return [
     ############################# START CATEGORIES TITLES ########################
     'index_title'           => ucfirst('categories'),
     'create_title'          => ucfirst('create new category'),
+    'edit_title'            => ucfirst('edit category'),
     'index_main_heading'    => ucfirst('categories'),
     'index_card_title'      => ucfirst('all categories'),
     ############################# START CATEGORIES TITLES ########################
@@ -36,6 +37,7 @@ return [
     'dashboard'                 => ucfirst('dashboard'),
     'breadcrumb_index_title'    => ucfirst('all categories'),
     'breadcrumb_index_add_new'  => ucfirst('create new'),
+    'breadcrumb_index_edit'     => ucfirst('edit category'),
     'breadcrumb_index_dropdown_main'  => ucfirst('main category'),
     'breadcrumb_index_dropdown_sub'   => ucfirst('subcategory'),
     'breadcrumb_index_dropdown_all'   => ucfirst('all categories'),
@@ -45,7 +47,9 @@ return [
 
     ############################# START CATEGORIES CARD HEADER ########################
     'main_cate_create_header_title' => ucfirst('create main category'),
-    'subcate_create_header_title'   => ucfirst('create sub category'),
+    'main_cate_edit_header_title'   => ucfirst('edit main category'),
+    'subcate_create_header_title'   => ucfirst('create subcategory'),
+    'subcate_edit_header_title'     => ucfirst('edit subcategory'),
     ############################## END CATEGORIES CARD HEADER #########################
 
     ############################# START PAGE TITLES ########################
@@ -104,8 +108,8 @@ return [
 
         ############################# START TABLE ACTIONS ########################
         'td_edit'           => ucfirst('edit'),
-        'show_main_cate'    => ucfirst('show main category'),
-        'show_sub_cate'     => ucfirst('show subcategories'),
+        'show_main_cate'    => ucfirst('edit main category'),
+        'show_sub_cate'     => ucfirst('edit subcategories'),
         'td_add_sub'        => ucfirst('add subcategory'),
         'td_add_main'       => ucfirst('add main category'),
         'td_activate'       => ucfirst('activate'),

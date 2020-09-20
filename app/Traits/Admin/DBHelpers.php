@@ -10,14 +10,14 @@ trait DBHelpers
      *
      * @param  \App\Models\Model  $modelName
      * @param  int  $id
-     * 
+     *
      * @return object
      */
     private function getRowByID($modelName, $id)
     {
         /**
          * The database row.
-         * 
+         *
          * @var object
          */
         return $modelName::find($id);

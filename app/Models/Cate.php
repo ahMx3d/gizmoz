@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Astrotomic\Translatable\Translatable;
-use App\QueryFilters\Category\Create;
-use App\QueryFilters\Category\Name;
-use App\QueryFilters\Category\Order;
-use App\QueryFilters\Category\Status;
-use App\QueryFilters\Category\Type;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pipeline\Pipeline;
+use App\QueryFilters\Category\Name;
+use App\QueryFilters\Category\Type;
+use App\QueryFilters\Category\Order;
+use App\QueryFilters\Category\Create;
+use App\QueryFilters\Category\Edit;
+use App\QueryFilters\Category\Status;
+use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Translatable;
 
 class Cate extends Model
 {
@@ -191,6 +192,11 @@ class Cate extends Model
         ])->thenReturn()->paginate(PAGINATION_COUNT);
     }
 
+    /**
+     * Pipeline filtered main categories for create.
+     *
+     * @return object
+     */
     public static function mainCatesCreated()
     {
         return app(
@@ -199,6 +205,22 @@ class Cate extends Model
             self::query()
         )->through(
             Create::class
+        )->thenReturn()->get();
+    }
+
+    /**
+     * Pipeline filtered main categories for edit.
+     *
+     * @return object
+     */
+    public static function mainCatesForEdit()
+    {
+        return app(
+            Pipeline::class
+        )->send(
+            self::query()
+        )->through(
+            edit::class
         )->thenReturn()->get();
     }
 }

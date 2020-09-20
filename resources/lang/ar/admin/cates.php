@@ -16,6 +16,7 @@ return [
     ############################# START CATEGORIES TITLES ########################
     'index_title'           => 'الاقسام',
     'create_title'          => 'اضافة قسم جديد',
+    'edit_title'            => 'تعديل قسم',
     'index_main_heading'    => 'الاقسام',
     'index_card_title'      => 'جميع الاقسام',
     ############################## END CATEGORIES TITLES #########################
@@ -36,6 +37,7 @@ return [
     'dashboard'                 => 'الرئيسيه',
     'breadcrumb_index_title'    => 'كل اقسام الموقع',
     'breadcrumb_index_add_new'  => 'اضافة قسم جديد',
+    'breadcrumb_index_edit'     => 'تعديل قسم',
     'breadcrumb_index_dropdown_main'  => 'رئيسى',
     'breadcrumb_index_dropdown_sub'   => 'فرعى',
     'breadcrumb_index_dropdown_all'   => 'كل الاقسام',
@@ -45,7 +47,9 @@ return [
 
     ############################# START CATEGORIES CARD HEADER ########################
     'main_cate_create_header_title' => 'اضافة قسم رئيسى',
+    'main_cate_edit_header_title'   => 'تعديل قسم رئيسى',
     'subcate_create_header_title'   => 'اضافة قسم فرعى',
+    'subcate_edit_header_title'     => 'تعديل قسم فرعى',
     ############################## END CATEGORIES CARD HEADER #########################
 
     ############################# START PAGE TITLES ########################
@@ -104,8 +108,8 @@ return [
 
         ############################# START TABLE ACTIONS ########################
         'td_edit'           => 'تعديل',
-        'show_main_cate'    => 'عرض القسم الرئيسى',
-        'show_sub_cate'     => 'عرض الاقسام الفرعيه',
+        'show_main_cate'    => 'تعديل القسم الرئيسى',
+        'show_sub_cate'     => 'تعديل الاقسام الفرعيه',
         'td_add_sub'        => 'اضافة قسم فرعي',
         'td_add_main'       => 'اضافة قسم رئيسى',
         'td_activate'       => 'تفعيل',

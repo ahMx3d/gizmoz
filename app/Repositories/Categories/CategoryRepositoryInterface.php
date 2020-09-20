@@ -41,10 +41,19 @@ interface CategoryRepositoryInterface
 
     /**
      * Pipeline filtered main categories in descending order.
+     * Used for create method.
      *
      * @return mixed
      */
     public function mainCatesToCreateSubcate();
+
+    /**
+     * Pipeline filtered main categories in descending order.
+     * Used for edit method.
+     *
+     * @return mixed
+     */
+    public function mainCatesToEditSubcate();
 
     /**
      * Store categories.
@@ -53,4 +62,12 @@ interface CategoryRepositoryInterface
      * @return void
      */
     public function cateStore($request);
+
+    /**
+     * Get category row of an id.
+     *
+     * @param int $id
+     * @return object
+     */
+    public function findCateRowById($id);
 }

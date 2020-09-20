@@ -127,7 +127,33 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            /**
+             * Category row.
+             *
+             * @var object
+             */
+            $cate = $this->categoryRepository->findCateRowById($id);
+
+            // Redirect with error message to the main categories index.
+            if (!$cate) return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'db_error'
+            );
+
+            return view(
+                'admin.categories.show',
+                compact('cate')
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the main categories index.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
@@ -138,7 +164,43 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            /**
+             * Category row.
+             *
+             * @var object
+             */
+            $cate = $this->categoryRepository->findCateRowById($id);
+
+            // Redirect with error message to the main categories index.
+            if (!$cate) return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'db_error'
+            );
+
+            /**
+             * All filtered main categories pipeline in a descending order.
+             *
+             * @var object
+             */
+            $mainCatesForSub = $this->categoryRepository->mainCatesToEditSubcate();
+
+            return view(
+                'admin.categories.edit',
+                compact(
+                    'cate',
+                    'mainCatesForSub'
+                )
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the main categories index.
+            return Utilities::redirectWithMSG(
+                'categories.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

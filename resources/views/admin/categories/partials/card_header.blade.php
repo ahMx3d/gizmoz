@@ -20,8 +20,11 @@
                         @include('admin.categories.partials.dropdowns.all')
                     </li>
                     <li class="breadcrumb-item active">
-                        {{-- <a href="{{ route('main-categories.create') }}">{{ __('admin/cates.add_new') }}</a> --}}
+                        @if (Route::currentRouteName() == 'categories.edit')
+                            <span>{{ __('admin/cates.breadcrumb_index_edit') }}</span>
+                        @else
                         @include('admin.categories.partials.dropdowns.add')
+                        @endif
                     </li>
                 </ol>
             </div>

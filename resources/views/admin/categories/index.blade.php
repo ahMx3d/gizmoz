@@ -90,12 +90,21 @@
                                                             role="group"
                                                             aria-label="Basic example">
 
+                                                            @if ($cate->parent_id === null)
                                                             <a
-                                                                {{-- href="{{ route('main-categories.edit', $cate->id) }}" --}}
+                                                                href="{{ route('categories.edit', $cate->id). '?edit=main' }}"
                                                                 class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
 
                                                                 <span>{{ __('admin/cates.td_edit') }}</span>
                                                             </a>
+                                                            @else
+                                                            <a
+                                                                href="{{ route('categories.edit', $cate->id). '?edit=sub' }}"
+                                                                class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+
+                                                                <span>{{ __('admin/cates.td_edit') }}</span>
+                                                            </a>
+                                                            @endif
 
                                                             @if ($cate->parent_id === null)
                                                             <div class="dropdown">
@@ -111,7 +120,7 @@
                                                                 <div class="dropdown-menu text-center" aria-labelledby="subcates-dropdown-menu">
                                                                     @forelse ($cate->subcates as $subcate)
                                                                     <a
-                                                                        href="{{ route('categories.show', $subcate->id) }}"
+                                                                        href="{{ route('categories.edit', $subcate->id). '?edit=sub' }}"
                                                                         class="dropdown-item">{{ $subcate->name }}</a>
                                                                         @if (!$loop->last)
                                                                         <div class="dropdown-divider"></div>
@@ -135,7 +144,7 @@
                                                                 <div class="dropdown-menu text-center" aria-labelledby="mainCate-dropdown-menu">
                                                                     @if ($cate->mainCate != null)
                                                                     <a
-                                                                        href="{{ route('categories.show', $cate->mainCate->id) }}"
+                                                                        href="{{ route('categories.edit', $cate->mainCate->id). '?edit=main' }}"
                                                                         class="dropdown-item">{{ $cate->mainCate->name }}</a>
                                                                     @else
                                                                     <span>{{ __('admin/cates.td_no_main') }}</span>

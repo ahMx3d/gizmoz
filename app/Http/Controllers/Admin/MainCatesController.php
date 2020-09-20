@@ -29,7 +29,7 @@ class MainCatesController extends Controller
 
             /**
              * The database categories.
-             * 
+             *
              * @var object
              */
             $cates = Cate::parentCate()->orderBy(
@@ -147,7 +147,7 @@ class MainCatesController extends Controller
         try {
             /**
              * The database category.
-             * 
+             *
              * @var object
              */
             $cate = $this->getRowByID(
@@ -190,7 +190,7 @@ class MainCatesController extends Controller
         try {
             /**
              * The database category.
-             * 
+             *
              * @var object
              */
             $cate = $this->getRowByID(
@@ -235,7 +235,7 @@ class MainCatesController extends Controller
 
             /**
              * The database category.
-             * 
+             *
              * @var object
              */
             $cate = $this->getRowByID(
@@ -344,7 +344,7 @@ class MainCatesController extends Controller
 
             /**
              * The database category.
-             * 
+             *
              * @var object
              */
             $cate = $this->getRowByID(

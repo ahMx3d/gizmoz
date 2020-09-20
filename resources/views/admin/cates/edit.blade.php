@@ -86,7 +86,7 @@
                                             type="hidden"
                                             name="id"
                                             value="{{$cate->id}}" />
-                                        
+
                                         <div class="form-body">
                                             <h4 class="form-section">
                                                 <i class="ft-home"></i>
@@ -123,7 +123,7 @@
                                                         @error('cate_name')
                                                             <span class="text-danger">{{$message}}</span>
                                                         @enderror
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -141,7 +141,7 @@
                                                         @error('cate_slug')
                                                             <span class="text-danger">{{$message}}</span>
                                                         @enderror
-                                                        
+
                                                     </div>
                                                 </div>
 
@@ -198,7 +198,7 @@
                                                 type="button"
                                                 class="btn btn-warning mr-1"
                                                 onclick="history.back();">
-                                                
+
                                                 <i class="ft-x"></i>
                                                 <span>{{ __('admin/cates.cate_cancel_action') }}</span>
                                             </button>
