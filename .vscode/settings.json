@@ -9,6 +9,22 @@
     "blade.format.enable": true,
     "emmet.triggerExpansionOnTab": true,
     "cSpell.words": [
+        "mimetypes",
         "subcate"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 100,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "gizmozConnection",
+            "database": "gizmoz",
+            "username": "root",
+            "password": ""
+        }
     ],
 }

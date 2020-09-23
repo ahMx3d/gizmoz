@@ -75,16 +75,20 @@ Route::group(
 
                 ####################### START SIDEBAR ROUTES ####################
 
-                    ###################### START MAIN CATES ROUTES ####################
-                    Route::resource('categories', 'CategoriesController');
-                    ###################### START MAIN CATES ROUTES ####################
+                    Route::resources([
+                        'categories' => 'CategoriesController',     // categories
+                        'brands'     => 'BrandsController',         // brands
+                    ]);
+                    ###################### START CATEGORIES ROUTES ####################
+                    // Route::resource('categories', 'CategoriesController');
+                    ###################### START CATEGORIES ROUTES ####################
 
                     ###################### START MAIN CATES ROUTES ####################
-                    Route::resource('main-categories', 'MainCatesController');
+                    // Route::resource('main-categories', 'MainCatesController');
                     ###################### START MAIN CATES ROUTES ####################
 
                     ###################### START SUBCATES ROUTES ####################
-                    Route::resource('subcategories', 'SubcatesController');
+                    // Route::resource('subcategories', 'SubcatesController');
                     ###################### START SUBCATES ROUTES ####################
 
                     ###################### START SETTINGS ROUTES ####################

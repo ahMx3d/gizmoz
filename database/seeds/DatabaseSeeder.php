@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
 
         // DATA FOR ADMINS TABLE
         $this->call(AdminSeeder::class);
+        // DATA FOR BRANDS TABLE
+        $this->call(BrandSeeder::class);
         // DATA FOR CATES TABLE
         $this->call(CateSeeder::class);
         // DATA FOR SETTINGS TABLE

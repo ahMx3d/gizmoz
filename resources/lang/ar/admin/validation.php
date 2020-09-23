@@ -82,8 +82,8 @@ return [
         'string' => 'هذا الحقل قد لا يكون اكبر من :max رموز',
         'array' => 'هذا الحقل قد لا يكون اكبر من :max عنصر',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values',
-    'mimetypes' => 'The :attribute must be a file of type: :values',
+    'mimes' => 'يجب أن يكون هذا الحقل ملفًا ينتهي بامتدادات type: :values',
+    'mimetypes' => 'يجب أن يكون هذا الحقل ملفًا ينتهي بامتدادات type: :values',
     'min' => [
         'numeric' => 'هذا الحقل يجب ان يكون علي الاقل :min',
         'file' => 'هذا الحقل يجب ان يكون علي الاقل :min كيلو بايت',

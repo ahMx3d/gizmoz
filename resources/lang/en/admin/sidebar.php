@@ -26,11 +26,12 @@ return [
     'all_cates'  => ucfirst('all categories'),
     'main_cates' => ucfirst('main categories'),
     'subcates'   => ucfirst('subcategories'),
+    'brands'     => ucfirst('brands'),
     ############################## END GENERAL TABS #########################
 
     ############################# START SETTINGS ########################
     'settings'  => ucfirst('settings'),
-        
+
         ######################## START SHIPPING METHODS #################
         'shipping_methods'  => ucfirst('shipping methods'),
             'free_shipping' => ucfirst('free shipping'),

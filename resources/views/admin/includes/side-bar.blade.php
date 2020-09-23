@@ -80,27 +80,27 @@
                     {{-- <li>
                             <a class="menu-item" href="{{ route('categories.create') }}"
                     data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
-                    </li> --}}
+            </li> --}}
         </ul>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="">
                 <i class="la la-group"></i>
                 <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.main_cates') }}</span>
-                <span
-                    class="badge badge badge-danger badge-pill float-right mr-2">{{ \App\Models\Cate::parentCate()->count() }}</span>
-            </a>
-            <ul class="menu-content">
-                <li class="active">
-                    <a class="menu-item" href="{{ route('main-categories.index') }}"
-                        data-i18n="nav.dash.ecommerce">{{ __('admin/sidebar.view_all') }}</a>
-                </li>
-                <li>
-                    <a class="menu-item" href="{{ route('main-categories.create') }}"
-                        data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
-                </li>
-            </ul>
+        <span
+            class="badge badge badge-danger badge-pill float-right mr-2">{{ \App\Models\Cate::parentCate()->count() }}</span>
+        </a>
+        <ul class="menu-content">
+            <li class="active">
+                <a class="menu-item" href="{{ route('main-categories.index') }}"
+                    data-i18n="nav.dash.ecommerce">{{ __('admin/sidebar.view_all') }}</a>
+            </li>
+            <li>
+                <a class="menu-item" href="{{ route('main-categories.create') }}"
+                    data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
+            </li>
+        </ul>
         </li>
 
         <li class="nav-item">
@@ -120,20 +120,22 @@
                         data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a href="">
                 <i class="la la-male"></i>
-                <span class="menu-title" data-i18n="nav.dash.main">المتاجر</span>
-                <span class="badge badge badge-success badge-pill float-right mr-2"></span>
+                <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.brands') }}</span>
+                <span class="badge badge badge-danger badge-pill float-right mr-2"></span>
             </a>
             <ul class="menu-content">
                 <li class="active">
-                    <a class="menu-item" href="" data-i18n="nav.dash.ecommerce">عرض كل المتاجر</a>
+                    <a class="menu-item" href="{{ route('brands.index') }}"
+                        data-i18n="nav.dash.ecommerce">{{ __('admin/sidebar.view_all') }}</a>
                 </li>
                 <li>
-                    <a class="menu-item" href="" data-i18n="nav.dash.crypto">اضافة متجر جديد</a>
+                    <a class="menu-item" href="{{ route('brands.create') }}"
+                        data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
                 </li>
             </ul>
         </li>

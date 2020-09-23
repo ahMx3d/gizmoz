@@ -82,8 +82,8 @@ return [
         'string' => 'This field may not be greater than :max characters',
         'array' => 'This field may not have more than :max items',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values',
-    'mimetypes' => 'The :attribute must be a file of type: :values',
+    'mimes' => 'This field must be a file ended with type: :values extensions',
+    'mimetypes' => 'This field must be a file ended with type: :values extensions',
     'min' => [
         'numeric' => 'This field must be at least :min',
         'file' => 'This field must be at least :min kilobytes',
