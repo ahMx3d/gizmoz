@@ -2,12 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Helpers\Admin\Utilities;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Brands\BrandRepositoryInterface;
 
 class BrandsController extends Controller
 {
+    /**
+     * Brands Repository.
+     *
+     * @var object
+     */
+    private $brandRepository;
+
+    /**
+     * Construct list of brands methods.
+     *
+     * @param \App\Repositories\Brands\BrandRepositoryInterface $brandRepository
+     */
+    public function __construct(BrandRepositoryInterface $brandRepository)
+    {
+        $this->brandRepository = $brandRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,12 +34,26 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $brands = Brand::orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
+        try {
+            /**
+             * All filtered brand pipelines in a descending order.
+             *
+             * @var object
+             */
+            $brands = $this->brandRepository->allBrandsDescWithFilters();
 
-        return view(
-            'admin.brands.index',
-            compact('brands')
-        );
+            return view(
+                'admin.brands.index',
+                compact('brands')
+            );
+        } catch (\Throwable $th) {
+            // redirect to dashboard with error message.
+            return Utilities::redirectWithMSG(
+                'admin.dashboard',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\QueryFilters\Brand\Name;
+use App\QueryFilters\Brand\Order;
+use Illuminate\Pipeline\Pipeline;
+use App\QueryFilters\Brand\Status;
 use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
 
@@ -70,5 +74,38 @@ class Brand extends Model
     {
         return ($this->status == true) ? __('admin/brands.model_active') : __('admin/brands.model_pending');
     }
+
+    /**
+     * Brands descending scope.
+     *
+     * @param query $query
+     * @return object
+     */
+    public function scopeDescBrands($query)
+    {
+        return $query->orderBy(
+            'id',
+            'DESC'
+        );
+    }
+
+    /**
+     * All brands with pipeline filters.
+     *
+     * @return object
+     */
+    public static function allBrands()
+    {
+        return app(
+            Pipeline::class
+        )->send(
+            self::descBrands()
+        )->through([
+            Name::class,
+            Order::class,
+            Status::class,
+        ])->thenReturn()->paginate(PAGINATION_COUNT);
+    }
+
 
 }

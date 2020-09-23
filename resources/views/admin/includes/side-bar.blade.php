@@ -126,7 +126,9 @@
             <a href="">
                 <i class="la la-male"></i>
                 <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.brands') }}</span>
-                <span class="badge badge badge-danger badge-pill float-right mr-2"></span>
+                <span class="badge badge badge-danger badge-pill float-right mr-2">
+                    {{ \App\Repositories\Brands\BrandRepository::allBrandsCount() }}
+                </span>
             </a>
             <ul class="menu-content">
                 <li class="active">
