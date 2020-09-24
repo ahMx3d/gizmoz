@@ -52,10 +52,8 @@
                                         <tr>
                                             <th class="text-center">#</th>
                                             <th class="text-center">{{ __('admin/brands.th_name') }}</th>
-                                            {{-- <th class="text-center">{{ __('admin/brands.th_seo') }}</th> --}}
                                             <th class="text-center">{{ __('admin/brands.th_image') }}</th>
                                             <th class="text-center">{{ __('admin/brands.th_status') }}</th>
-                                            {{-- <th class="text-center">{{ __('admin/brands.th_type') }}</th> --}}
                                             <th class="text-center">{{ __('admin/brands.th_actions') }}</th>
                                             <th class="text-center">{{ __('admin/brands.th_updated_at') }}</th>
                                         </tr>
@@ -68,7 +66,6 @@
                                                 <tr>
                                                     <td class="text-center">{{ $brand->id }}</td>
                                                     <td class="text-center">{{ $brand->name }}</td>
-                                                    {{-- <td class="text-center">{{ $cate->slug }}</td> --}}
                                                     <td class="text-center">
                                                         <img
                                                             style="width: 100%;"

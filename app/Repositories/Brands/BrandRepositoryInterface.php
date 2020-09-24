@@ -25,4 +25,12 @@ interface BrandRepositoryInterface
      * @return mixed
      */
     public function allBrandsDescWithFilters();
+
+    /**
+     * Store brands.
+     *
+     * @param object $request
+     * @return void
+     */
+    public function brandStore($request);
 }

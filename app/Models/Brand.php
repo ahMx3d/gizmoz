@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+use App\Helpers\Admin\Utilities;
 use App\QueryFilters\Brand\Name;
 use App\QueryFilters\Brand\Order;
 use Illuminate\Pipeline\Pipeline;
@@ -52,9 +54,7 @@ class Brand extends Model
      *
      * @var array
      */
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -73,6 +73,61 @@ class Brand extends Model
     public function getStatus()
     {
         return ($this->status == true) ? __('admin/brands.model_active') : __('admin/brands.model_pending');
+    }
+
+    /**
+     * Status mutator to be done whether it comes in request or not.
+     *
+     * @param mixed $val
+     * @return void
+     */
+    public function getImageAttribute($val)
+    {
+        if (    // when there is no request key make value equals to zero.
+            $val == NULL || $val =='default.jpg'
+        ) {
+            return asset('/assets/images/brands/default.jpg');
+        } elseif (Str::of($val)->is('http*')) {
+            return $val;
+        }
+        else {    // when there is request key make value equals to one.
+            return asset('/assets/images/brands/' .$val);
+        }
+    }
+
+    /**
+     * Status mutator to be done whether it comes in request or not.
+     *
+     * @param mixed $val
+     * @return void
+     */
+    public function setStatusAttribute($val)
+    {
+        if (    // when there is no request key make value equals to zero.
+            !isset($val) || empty($val)
+        ) {
+            $this->attributes['status'] = 0;
+        } else {    // when there is request key make value equals to one.
+            $this->attributes['status'] = 1;
+        }
+    }
+
+    /**
+     * Image mutator to be done whether it comes in request or not.
+     *
+     * @param mixed $val
+     * @return void
+     */
+    public function setImageAttribute($val)
+    {
+        if ($val == null) {     // when there is no request key make value equals to null.
+            $this->attributes['image'] = null;
+        } else {    // when there is a request key make value equals to the hashed name.
+            $this->attributes['image'] = Utilities::uploadFileGetName(
+                'brands',
+                $val
+            );
+        }
     }
 
     /**
@@ -106,6 +161,4 @@ class Brand extends Model
             Status::class,
         ])->thenReturn()->paginate(PAGINATION_COUNT);
     }
-
-
 }

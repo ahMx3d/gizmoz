@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\Admin\Utilities;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\BrandRequest;
 use App\Repositories\Brands\BrandRepositoryInterface;
 
 class BrandsController extends Controller
@@ -72,9 +73,28 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
-        //
+        // return $request->file('brand_imag');
+        // if(!is_object($request->brand_imag))return var_dump($request->brand_imag);exit;
+        try {
+            //Store brands into database.
+            $this->brandRepository->brandStore($request);
+
+            // Redirect to brands index table with success message.
+            return Utilities::redirectWithMSG(
+                'brands.index',
+                'success',
+                'store_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect to brands create view with error message.
+            return Utilities::redirectWithMSG(
+                'brands.create',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
