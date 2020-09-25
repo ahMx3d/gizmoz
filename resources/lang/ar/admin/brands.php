@@ -16,6 +16,8 @@ return [
     ############################# START BRANDS TITLES ########################
     'index_title'   => 'العلامات التجاريه',
     'create_title'  => 'علامه تجاريه جديده',
+    'edit_title'    => 'تعديل علامه تجاريه',
+    'show_title'    => 'عرض علامه تجاريه',
     ############################# END BRANDS TITLES ##########################
 
     ############################# START BRANDS BREADCRUMB ########################
@@ -41,6 +43,7 @@ return [
     ############################# START CARD HEADER ########################
     'index_header_title'     => 'العلامات التجاريه',
     'create_header_title'    => 'اضافة علامه تجاريه ',
+    'edit_header_title'    => 'تعديل علامه تجاريه ',
     ############################# END CARD HEADER ##########################
 
     ############################# START BRANDS TABLE HEADERS ########################
@@ -79,5 +82,11 @@ return [
     ############################# START BRANDS FORM PLACEHOLDERS ########################
     'brand_name_placeholder' => 'ادخل اسم العلامه التجاريه',
     ############################# END BRANDS FORM PLACEHOLDERS ##########################
+
+    ############################ START BRANDS FORM ACTIONS #########################
+    'brand_save_action'   => 'حفظ',
+    'brand_update_action' => 'تحديث',
+    'brand_cancel_action' => 'تراجع',
+    ############################# END BRANDS FORM ACTIONS ##########################
 
 ];

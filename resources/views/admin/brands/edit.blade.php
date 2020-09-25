@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title', __("admin/cates.edit_title"))
+@section('title', __("admin/brands.edit_title"))
 
 @section('content')
 
 <div class="app-content content">
-        <div class="content-wrapper">
-            @include('admin.categories.partials.card_header')
+        <div class="content-wrapper" style="padding-top: 0">
+            @include('admin.brands.partials.card_header')
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
@@ -13,16 +13,11 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    @if (request('edit') == 'main')
                                     <h4
                                         class="card-title"
-                                        id="basic-layout-form">{{ __('admin/cates.main_cate_edit_header_title') }}</h4>
-                                    @else
-                                    <h4
-                                        class="card-title"
-                                        id="basic-layout-form">{{ __('admin/cates.subcate_edit_header_title') }}</h4>
-                                    @endif
-                                    <a class="heading-elements-toggle">
+                                        id="basic-layout-form">{{ __('admin/brands.edit_header_title') }}</h4>
+
+                                        <a class="heading-elements-toggle">
                                         <i class="la la-ellipsis-v font-medium-3"></i>
                                     </a>
                                     <div class="heading-elements">
@@ -55,10 +50,10 @@
                                 @include('admin.includes.alerts.errors')
 
                                 <div class="card-content collapse show">
-                                    <div class="card-body">
+                                    <div class="card-body" style="padding: 0 1.5rem">
                                         <form
                                             class="form"
-                                            action="{{route('categories.update', $cate->id)}}"
+                                            action="{{route('brands.update', $brand->id)}}"
                                             method="POST"
                                             enctype="multipart/form-data">
 
@@ -68,110 +63,59 @@
                                             <div class="form-body">
                                                 <h4 class="form-section">
                                                     <i class="ft-home"></i>
-                                                    <span>{{ __('admin/cates.create_details') }}</span>
+                                                    <span>{{ __('admin/brands.brand_details') }}</span>
                                                 </h4>
 
                                                 <div class="row">
-
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="cate_name">{{ __('admin/cates.cate_name') }}</label>
-                                                            <input
-                                                                type="text"
-                                                                value="{{old('cate_name', $cate->name)}}"
-                                                                id="cate_name"
-                                                                name="cate_name"
-                                                                class="form-control"
-                                                                placeholder="{{ __('admin/cates.cate_name_placeholder') }}" />
-
-                                                            @error('cate_name')
-                                                                <span class="text-danger">{{$message}}</span>
-                                                            @enderror
-
+                                                            <div class="text-center">
+                                                                <img
+                                                                    style="width: 100%; height:450px; border-radius:50px"
+                                                                    class="{{--rounded-circle--}} {{--height-200--}}"
+                                                                    src="{{old('photo', $brand->image)}}"
+                                                                    alt="{{$brand->name}} Photo" />
+                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                    {{-- <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="cate_slug">{{ __('admin/cates.cate_slug') }}</label>
-                                                            <input
-                                                                type="text"
-                                                                value="{{old('cate_slug')}}"
-                                                                id="cate_slug"
-                                                                name="cate_slug"
-                                                                class="form-control"
-                                                                placeholder="{{ __('admin/cates.cate_slug_placeholder') }}" />
-
-                                                            @error('cate_slug')
-                                                                <span class="text-danger">{{$message}}</span>
-                                                            @enderror
-
-                                                        </div>
-                                                    </div> --}}
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group offset-md-4">
-                                                            <label
-                                                                style="display: block; margin-bottom: 13px;"
-                                                                for="switcheryColor4"
-                                                                class="card-title">{{ __('admin/cates.cate_stat') }}</label>
-                                                            <input
-                                                                type="checkbox"
-                                                                name="cate_stat"
-                                                                value="1"
-                                                                id="switcheryColor4"
-                                                                class="switchery"
-                                                                data-color="success"
-                                                                {{(old('cate_stat', $cate->status) == true)? 'checked': ''}} />
-
-                                                            @error('cate_stat')
-                                                                <div>
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                </div>
-                                                            @enderror
-
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
-                                                {{-- <div class="row">
+                                                <div class="row">
 
                                                     <div class="col-md-10">
                                                         <div class="form-group">
-                                                            <label for="cate_imag">{{ __('admin/cates.cate_imag') }}</label>
+                                                            <label for="brand_name">{{ __('admin/brands.brand_name') }}</label>
                                                             <input
-                                                                type="file"
-                                                                class="form-control form-control-lg form-control-file"
-                                                                name="cate_imag"
-                                                                value="{{ old('cate_img') }}"
-                                                                id="cate_imag" />
+                                                                type="text"
+                                                                value="{{old('brand_name', $brand->name)}}"
+                                                                id="brand_name"
+                                                                name="brand_name"
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/brands.brand_name_placeholder') }}" />
 
-                                                            @error('cate_imag')
-                                                                <div>
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                </div>
+                                                            @error('brand_name')
+                                                                <span class="text-danger">{{$message}}</span>
                                                             @enderror
 
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
-                                                        <div class="form-group text-center">
+                                                        <div class="form-group offset-md-4">
                                                             <label
                                                                 style="display: block; margin-bottom: 13px;"
                                                                 for="switcheryColor4"
-                                                                class="card-title">{{ __('admin/cates.cate_stat') }}</label>
+                                                                class="card-title">{{ __('admin/brands.brand_stat') }}</label>
                                                             <input
                                                                 type="checkbox"
-                                                                name="cate_stat"
+                                                                name="brand_stat"
                                                                 value="1"
                                                                 id="switcheryColor4"
                                                                 class="switchery"
                                                                 data-color="success"
-                                                                checked />
+                                                                {{(old('brand_stat', $brand->status) == true)? 'checked': ''}} />
 
-                                                            @error('cate_stat')
+                                                            @error('brand_stat')
                                                                 <div>
                                                                     <span class="text-danger">{{$message}}</span>
                                                                 </div>
@@ -180,53 +124,29 @@
                                                         </div>
                                                     </div>
 
-                                                </div> --}}
+                                                </div>
 
-                                                {{-- @if ($cate->parent_id !=null) --}}
-                                                @if (request('edit') == 'sub')
-                                                <input
-                                                    type="hidden"
-                                                    name="sub"
-                                                    value="" />
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="cate_main">
-                                                                {{ __('admin/cates.cate_main') }}
-                                                            </label>
-                                                            <select
-                                                                id="cate_main"
-                                                                name="cate_main"
-                                                                class="custom-select custom-select-lg">
+                                                            <label for="brand_imag">{{ __('admin/brands.brand_imag') }}</label>
+                                                            <input
+                                                                type="file"
+                                                                class="form-control form-control-lg form-control-file"
+                                                                name="brand_imag"
+                                                                value="{{ old('brand_imag') }}"
+                                                                id="brand_imag" />
 
-                                                                {{-- <optgroup disabled
-                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
-                                                                <option
-                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"
-                                                                    disabled
-                                                                    value="0">
-                                                                    {{ __('admin/cates.cate_main_placeholder') }}
-                                                                </option>
-                                                                @foreach ($mainCatesForSub as $mainCate)
-                                                                    <option
-                                                                        @if (old('cate_main', $cate->parent_id) == $mainCate->id)
-                                                                        selected
-                                                                        @endif
-                                                                        value="{{$mainCate->id}}">
-                                                                        {{$mainCate->name}}
-                                                                    </option>
-                                                                @endforeach
-                                                                {{-- </optgroup> --}}
-                                                            </select>
-
-                                                            @error('cate_main')
-                                                                <span class="text-danger">{{$message}}</span>
+                                                            @error('brand_imag')
+                                                                <div>
+                                                                    <span class="text-danger">{{$message}}</span>
+                                                                </div>
                                                             @enderror
 
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @endif
+
                                             </div>
 
                                             <div class="form-actions">
@@ -236,7 +156,7 @@
                                                     onclick="history.back();">
 
                                                     <i class="ft-x"></i>
-                                                    <span>{{ __('admin/cates.cate_cancel_action') }}</span>
+                                                    <span>{{ __('admin/brands.brand_cancel_action') }}</span>
                                                 </button>
 
                                                 <button
@@ -244,7 +164,7 @@
                                                     class="btn btn-primary">
 
                                                     <i class="la la-check-square-o"></i>
-                                                    <span>{{ __('admin/cates.cate_create_action') }}</span>
+                                                    <span>{{ __('admin/brands.brand_update_action') }}</span>
                                                 </button>
                                             </div>
                                         </form>

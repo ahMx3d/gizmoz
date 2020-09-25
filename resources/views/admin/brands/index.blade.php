@@ -68,7 +68,7 @@
                                                     <td class="text-center">{{ $brand->name }}</td>
                                                     <td class="text-center">
                                                         <img
-                                                            style="width: 100%;"
+                                                            style="width: 100%; border-radius: 5rem"
                                                             src="{{ $brand->image }}"
                                                             alt="{{ __('admin/brands.td_img_alt') }}" />
                                                     </td>

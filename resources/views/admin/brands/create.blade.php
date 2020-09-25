@@ -136,7 +136,7 @@
                                                     onclick="history.back();">
 
                                                     <i class="ft-x"></i>
-                                                    <span>{{ __('admin/cates.cate_cancel_action') }}</span>
+                                                    <span>{{ __('admin/brands.brand_cancel_action') }}</span>
                                                 </button>
 
                                                 <button
@@ -144,7 +144,7 @@
                                                     class="btn btn-primary">
 
                                                     <i class="la la-check-square-o"></i>
-                                                    <span>{{ __('admin/cates.cate_create_action') }}</span>
+                                                    <span>{{ __('admin/brands.brand_save_action') }}</span>
                                                 </button>
                                             </div>
                                         </form>

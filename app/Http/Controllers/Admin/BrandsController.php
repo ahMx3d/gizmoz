@@ -75,8 +75,6 @@ class BrandsController extends Controller
      */
     public function store(BrandRequest $request)
     {
-        // return $request->file('brand_imag');
-        // if(!is_object($request->brand_imag))return var_dump($request->brand_imag);exit;
         try {
             //Store brands into database.
             $this->brandRepository->brandStore($request);
@@ -116,7 +114,33 @@ class BrandsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            /**
+             * Brand row.
+             *
+             * @var object
+             */
+            $brand = $this->brandRepository->findBrandRowById($id);
+
+            // Redirect with error message to the brands index table.
+            if (!$brand) return Utilities::redirectWithMSG(
+                'brands.index',
+                'error',
+                'db_error'
+            );
+
+            return view(
+                'admin.brands.edit',
+                compact('brand')
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the brands index table.
+            return Utilities::redirectWithMSG(
+                'brands.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

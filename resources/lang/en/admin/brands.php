@@ -16,6 +16,8 @@ return [
     ############################# START TITLES ########################
     'index_title'      => ucfirst('brands'),
     'create_title'     => ucfirst('new brand'),
+    'edit_title'       => ucfirst('edit brand'),
+    'show_title'       => ucfirst('show brand'),
     ############################# END TITLES ##########################
 
     ############################# START BREADCRUMB ########################
@@ -39,8 +41,9 @@ return [
     ############################## END BRANDS FILTER #########################
 
     ############################# START BRANDS CARD HEADER ########################
-    'index_header_title'  => ucfirst('brands'),
+    'index_header_title'   => ucfirst('brands'),
     'create_header_title'  => ucfirst('add new brand'),
+    'edit_header_title'    => ucfirst('edit brand'),
     ############################# END BRANDS CARD HEADER ##########################
 
     ############################# START BRANDS TABLE HEADERS ########################
@@ -80,5 +83,10 @@ return [
     'brand_name_placeholder' => ucfirst('enter brand name'),
     ############################# END BRANDS FORM PLACEHOLDERS ##########################
 
+    ############################ START BRANDS FORM ACTIONS #########################
+    'brand_save_action'   => ucfirst('save'),
+    'brand_update_action' => ucfirst('update'),
+    'brand_cancel_action' => ucfirst('cancel'),
+    ############################# END BRANDS FORM ACTIONS ##########################
 
 ];
