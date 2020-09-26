@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CateSeeder::class);
         // DATA FOR SETTINGS TABLE
         $this->call(SettingDatabaseSeeder::class);
+        // DATA FOR TAGS TABLE
+        $this->call(TagSeeder::class);
     }
 }

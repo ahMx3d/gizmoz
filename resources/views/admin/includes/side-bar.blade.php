@@ -142,6 +142,26 @@
             </ul>
         </li>
 
+        <li class="nav-item">
+            <a href="">
+                <i class="la la-male"></i>
+                <span class="menu-title" data-i18n="nav.dash.main">{{ __('admin/sidebar.tags') }}</span>
+                <span class="badge badge badge-primary badge-pill float-right mr-2">
+                    {{ \App\Repositories\Tags\TagRepository::allTagsCount() }}
+                </span>
+            </a>
+            <ul class="menu-content">
+                <li class="active">
+                    <a class="menu-item" href="{{ route('tags.index') }}"
+                        data-i18n="nav.dash.ecommerce">{{ __('admin/sidebar.view_all') }}</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="{{ route('tags.create') }}"
+                        data-i18n="nav.dash.crypto">{{ __('admin/sidebar.add_new') }}</a>
+                </li>
+            </ul>
+        </li>
+
 
         <li class="nav-item">
             <a href="">

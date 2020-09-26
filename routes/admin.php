@@ -77,7 +77,8 @@ Route::group(
 
                     Route::resources([
                         'categories' => 'CategoriesController',     // categories
-                        'brands'     => 'BrandsController',         // brands
+                        'brands'     => 'BrandsController',        // brands
+                        'tags'       => 'TagsController',           // tags
                     ]);
                     ###################### START CATEGORIES ROUTES ####################
                     // Route::resource('categories', 'CategoriesController');

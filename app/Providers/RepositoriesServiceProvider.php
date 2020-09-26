@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Repositories\Categories\CategoryRepository;
-use App\Repositories\Categories\CategoryRepositoryInterface;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use App\Http\View\Composers\CategoriesComposer;
+use App\Repositories\Tags\TagRepository;
 use App\Repositories\Brands\BrandRepository;
+use App\Repositories\Tags\TagRepositoryInterface;
+use App\Repositories\Categories\CategoryRepository;
 use App\Repositories\Brands\BrandRepositoryInterface;
+use App\Repositories\Categories\CategoryRepositoryInterface;
 
 class RepositoriesServiceProvider extends ServiceProvider
 {
@@ -39,6 +39,12 @@ class RepositoriesServiceProvider extends ServiceProvider
         $this->app->bind(
             BrandRepositoryInterface::class,
             BrandRepository::class
+        );
+
+        // BRANDS REPOSITORY
+        $this->app->bind(
+            TagRepositoryInterface::class,
+            TagRepository::class
         );
     }
 }

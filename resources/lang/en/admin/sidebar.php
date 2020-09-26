@@ -27,6 +27,7 @@ return [
     'main_cates' => ucfirst('main categories'),
     'subcates'   => ucfirst('subcategories'),
     'brands'     => ucfirst('brands'),
+    'tags'       => ucfirst('tags'),
     ############################## END GENERAL TABS #########################
 
     ############################# START SETTINGS ########################
