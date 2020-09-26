@@ -120,8 +120,8 @@ class Brand extends Model
      */
     public function setImageAttribute($val)
     {
-        if ($val == null) {     // when there is no request key make value equals to null.
-            $this->attributes['image'] = null;
+        if (filter_var($val, FILTER_VALIDATE_URL)) {
+            $this->attributes['image'] = $val;
         } else {    // when there is a request key make value equals to the hashed name.
             $this->attributes['image'] = Utilities::uploadFileGetName(
                 'brands',

@@ -2,6 +2,9 @@
 
 namespace App\Helpers\Admin;
 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
+
 /*
 |--------------------------------------------------------------------------
 | Utilities helpers
@@ -58,8 +61,30 @@ class Utilities
      */
     public static function uploadFileGetName($folder, $file)
     {
-        $file->store('/', $folder);
-        $fileName = $file->hashName();
-        return $fileName;
+        if ($file != null) {
+            $file->store('/', $folder);
+            $fileName = $file->hashName();
+            return $fileName;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Delete file name from the specified server folder.
+     *
+     * @param string $folder
+     * @param string $image
+     * @return void
+     */
+    public static function deleteServerFile($folder, $image)
+    {
+        $imageName = Str::afterLast($image, '/');
+
+        $filePath = public_path('assets\images\\' . $folder . '\\' . $imageName);
+
+        if (File::exists($filePath)) {
+            File::delete($filePath);
+        }
     }
 }

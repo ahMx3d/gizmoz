@@ -198,6 +198,37 @@ class BrandsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            /**
+             * Brand row.
+             *
+             * @var object
+             */
+            $brand = $this->brandRepository->findBrandRowById($id);
+
+            // Redirect with error message to the brands index table.
+            if (!$brand) return Utilities::redirectWithMSG(
+                'brands.index',
+                'error',
+                'db_error'
+            );
+
+            // Delete brands from the database.
+            $this->brandRepository->brandDelete($brand);
+
+            // Redirect with success message to the brands index table.
+            return Utilities::redirectWithMSG(
+                'brands.index',
+                'success',
+                'delete_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the brands index table.
+            return Utilities::redirectWithMSG(
+                'brands.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Repositories\Brands;
 
+use App\Helpers\Admin\Utilities;
 use App\Models\Brand;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
 
 class BrandRepository implements BrandRepositoryInterface
 {
@@ -84,22 +87,44 @@ class BrandRepository implements BrandRepositoryInterface
      */
     public function brandUpdate($brand, $request)
     {
-        if (    // Check whether any value has been changed.
-            $brand->name != $request->input('brand_name') ||
-            $brand->status != $request->input('brand_stat') ||
-            $brand->image != $request->file('brand_imag')
-        ) {
-            /**
-             * Data to be updated.
-             *
-             * @var array
-             */
-            $data = $this->serveData($request);
+        /**
+         * Data to be updated.
+         *
+         * @var array
+         */
+        $data = $this->serveData($request);
+
+        if ($data['image'] == null) {
+            $data = Arr::except($data, 'image');
+            // Database update query statement.
+            $brand->update($data);
+        } else {
+            // Delete Old Image From Server.
+            Utilities::deleteServerFile(
+                'brands',
+                $brand->image
+            );
+
             // Database update query statement.
             $brand->update($data);
         }
-        // Nothing changed you are joking.
-        return;
     }
 
+    /**
+     * Delete brands.
+     *
+     * @param object $brand
+     * @return void
+     */
+    public function brandDelete($brand)
+    {
+        // Database delete query statement.
+        $brand->delete();
+
+        // Delete Image From Server.
+        Utilities::deleteServerFile(
+            'brands',
+            $brand->image
+        );
+    }
 }

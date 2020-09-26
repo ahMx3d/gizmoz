@@ -42,4 +42,12 @@ interface BrandRepositoryInterface
      * @return void
      */
     public function brandUpdate($brand, $request);
+
+    /**
+     * Delete brands.
+     *
+     * @param object $brand
+     * @return void
+     */
+    public function brandDelete($brand);
 }
