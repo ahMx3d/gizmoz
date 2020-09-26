@@ -33,4 +33,13 @@ interface BrandRepositoryInterface
      * @return void
      */
     public function brandStore($request);
+
+    /**
+     * Update brands.
+     *
+     * @param object $brand
+     * @param object $request
+     * @return void
+     */
+    public function brandUpdate($brand, $request);
 }

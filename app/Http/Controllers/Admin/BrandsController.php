@@ -150,9 +150,44 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BrandRequest $request, $id)
     {
-        //
+        try {
+            /**
+             * Brand row.
+             *
+             * @var object
+             */
+            $brand = $this->brandRepository->findBrandRowById($id);
+
+            // Redirect with error message to the brands index table.
+            if (!$brand) return Utilities::redirectWithMSG(
+                'brands.index',
+                'error',
+                'db_error'
+            );
+
+            // Update brands into the database.
+            $this->brandRepository->brandUpdate(
+                $brand,
+                $request
+            );
+
+            // Redirect with success message to the brands index table.
+            return Utilities::redirectWithMSG(
+                'brands.index',
+                'success',
+                'update_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the brands edit view.
+            return Utilities::redirectWithMSG(
+                'brands.edit',
+                'error',
+                'catch_error',
+                $id
+            );
+        }
     }
 
     /**

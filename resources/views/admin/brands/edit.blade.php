@@ -59,6 +59,7 @@
 
                                             @csrf
                                             @method('PUT')
+                                            <input type="hidden" name="edit" value="{{ $brand->id }}" />
 
                                             <div class="form-body">
                                                 <h4 class="form-section">

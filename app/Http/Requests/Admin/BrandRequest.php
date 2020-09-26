@@ -27,7 +27,7 @@ class BrandRequest extends FormRequest
             //
             'brand_name' => 'required|string|max:100',
             'brand_stat' => 'in:0,1',
-            'brand_imag' => 'required|mimes:jpg,jpeg,png',
+            'brand_imag' => 'required_without:edit|mimes:jpg,jpeg,png',
         ];
     }
 
@@ -48,8 +48,8 @@ class BrandRequest extends FormRequest
             'brand_stat.in'          => __('admin/validation.in'),
 
             // MAIN BRAND SELECTION MESSAGES
-            'brand_imag.required'    => __('admin/validation.required'),
-            'brand_imag.mimes'       => __('admin/validation.mimes'),
+            'brand_imag.required_without' => __('admin/validation.required'),
+            'brand_imag.mimes'            => __('admin/validation.mimes'),
 
         ];
     }

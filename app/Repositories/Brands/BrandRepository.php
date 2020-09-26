@@ -74,4 +74,32 @@ class BrandRepository implements BrandRepositoryInterface
             'image'  => $request->file('brand_imag'),
         ];
     }
+
+    /**
+     * Update brands.
+     *
+     * @param object $brand
+     * @param object $request
+     * @return void
+     */
+    public function brandUpdate($brand, $request)
+    {
+        if (    // Check whether any value has been changed.
+            $brand->name != $request->input('brand_name') ||
+            $brand->status != $request->input('brand_stat') ||
+            $brand->image != $request->file('brand_imag')
+        ) {
+            /**
+             * Data to be updated.
+             *
+             * @var array
+             */
+            $data = $this->serveData($request);
+            // Database update query statement.
+            $brand->update($data);
+        }
+        // Nothing changed you are joking.
+        return;
+    }
+
 }
