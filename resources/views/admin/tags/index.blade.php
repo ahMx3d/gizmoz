@@ -78,12 +78,12 @@
 
                                                                 <span>{{ __('admin/tags.td_edit') }}</span>
                                                             </a>
-                                                            <a
+                                                            {{-- <a
                                                                 href="{{ route('tags.show', $tag->id) }}"
                                                                 class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
 
                                                                 <span>{{ __('admin/tags.td_show') }}</span>
-                                                            </a>
+                                                            </a> --}}
                                                             <form
                                                                 action="{{ route('tags.destroy', $tag->id) }}"
                                                                 method="POST">

@@ -113,7 +113,33 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            /**
+             * Tag row.
+             *
+             * @var object
+             */
+            $tag = $this->tagRepository->findTagRowById($id);
+
+            // Redirect with error message to the tags index table.
+            if (!$tag) return Utilities::redirectWithMSG(
+                'tags.index',
+                'error',
+                'db_error'
+            );
+
+            return view(
+                'admin.tags.edit',
+                compact('tag')
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the tags index table.
+            return Utilities::redirectWithMSG(
+                'tags.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**
@@ -123,9 +149,44 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, $id)
     {
-        //
+        try {
+            /**
+             * Tag row.
+             *
+             * @var object
+             */
+            $tag = $this->tagRepository->findTagRowById($id);
+
+            // Redirect with error message to the tags index table.
+            if (!$tag) return Utilities::redirectWithMSG(
+                'tags.index',
+                'error',
+                'db_error'
+            );
+
+            // Update tags into the database.
+            $this->tagRepository->tagUpdate(
+                $tag,
+                $request
+            );
+
+            // Redirect with success message to the tags index table.
+            return Utilities::redirectWithMSG(
+                'tags.index',
+                'success',
+                'update_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the tags edit view.
+            return Utilities::redirectWithMSG(
+                'tags.edit',
+                'error',
+                'catch_error',
+                $id
+            );
+        }
     }
 
     /**
