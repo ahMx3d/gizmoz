@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title', __("admin/brands.create_title"))
+@section('title', __("admin/tags.create_title"))
 
 @section('content')
 
 <div class="app-content content">
         <div class="content-wrapper" style="padding-top: 0">
-            @include('admin.brands.partials.card_header')
+            @include('admin.tags.partials.card_header')
             <div class="content-body">
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
@@ -15,7 +15,7 @@
                                 <div class="card-header">
                                     <h4
                                         class="card-title"
-                                        id="basic-layout-form">{{ __('admin/brands.create_header_title') }}</h4>
+                                        id="basic-layout-form">{{ __('admin/tags.create_header_title') }}</h4>
                                     <a class="heading-elements-toggle">
                                         <i class="la la-ellipsis-v font-medium-3"></i>
                                     </a>
@@ -52,7 +52,7 @@
                                     <div class="card-body" style="padding: 0 1.5rem">
                                         <form
                                             class="form"
-                                            action="{{route('brands.store')}}"
+                                            action="{{route('tags.store')}}"
                                             method="POST"
                                             enctype="multipart/form-data">
 
@@ -61,72 +61,44 @@
                                             <div class="form-body">
                                                 <h4 class="form-section">
                                                     <i class="ft-home"></i>
-                                                    <span>{{ __('admin/brands.brand_details') }}</span>
+                                                    <span>{{ __('admin/tags.tag_details') }}</span>
                                                 </h4>
-
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <div class="form-group">
-                                                            <label for="brand_name">{{ __('admin/brands.brand_name') }}</label>
-                                                            <input
-                                                                type="text"
-                                                                value="{{old('brand_name')}}"
-                                                                id="brand_name"
-                                                                name="brand_name"
-                                                                class="form-control"
-                                                                placeholder="{{ __('admin/brands.brand_name_placeholder') }}" />
-
-                                                            @error('brand_name')
-                                                                <span class="text-danger">{{$message}}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-2">
-                                                        <div class="form-group offset-md-4">
-                                                            <label
-                                                                style="display: block; margin-bottom: 13px;"
-                                                                for="switcheryColor4"
-                                                                class="card-title">{{ __('admin/brands.brand_stat') }}</label>
-                                                            <input
-                                                                type="checkbox"
-                                                                name="brand_stat"
-                                                                value="1"
-                                                                id="switcheryColor4"
-                                                                class="switchery"
-                                                                data-color="success"
-                                                                checked />
-
-                                                            @error('brand_stat')
-                                                                <div>
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                </div>
-                                                            @enderror
-
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="brand_imag">{{ __('admin/brands.brand_imag') }}</label>
+                                                            <label for="tag_name">{{ __('admin/tags.tag_name') }}</label>
                                                             <input
-                                                                type="file"
-                                                                class="form-control form-control-lg form-control-file"
-                                                                name="brand_imag"
-                                                                value="{{ old('brand_imag') }}"
-                                                                id="brand_imag" />
+                                                                type="text"
+                                                                value="{{old('tag_name')}}"
+                                                                id="tag_name"
+                                                                name="tag_name"
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/tags.tag_name_placeholder') }}" />
 
-                                                            @error('brand_imag')
-                                                                <div>
-                                                                    <span class="text-danger">{{$message}}</span>
-                                                                </div>
+                                                            @error('tag_name')
+                                                                <span class="text-danger">{{$message}}</span>
                                                             @enderror
-
                                                         </div>
                                                     </div>
+                                                    {{-- <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="tag_slug">{{ __('admin/tags.tag_slug') }}</label>
+                                                            <input
+                                                                type="text"
+                                                                value="{{old('tag_slug')}}"
+                                                                id="tag_slug"
+                                                                name="tag_slug"
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/tags.tag_slug_placeholder') }}" />
+
+                                                            @error('tag_slug')
+                                                                <span class="text-danger">{{$message}}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div> --}}
                                                 </div>
+
                                             </div>
 
                                             <div class="form-actions">
@@ -136,7 +108,7 @@
                                                     onclick="history.back();">
 
                                                     <i class="ft-x"></i>
-                                                    <span>{{ __('admin/brands.brand_cancel_action') }}</span>
+                                                    <span>{{ __('admin/tags.tag_cancel_action') }}</span>
                                                 </button>
 
                                                 <button
@@ -144,7 +116,7 @@
                                                     class="btn btn-primary">
 
                                                     <i class="la la-check-square-o"></i>
-                                                    <span>{{ __('admin/brands.brand_save_action') }}</span>
+                                                    <span>{{ __('admin/tags.tag_save_action') }}</span>
                                                 </button>
                                             </div>
                                         </form>

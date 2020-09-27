@@ -3,6 +3,8 @@
 namespace App\Repositories\Tags;
 
 use App\Models\Tag;
+use Illuminate\Support\Arr;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class TagRepository implements TagRepositoryInterface
 {
@@ -51,11 +53,20 @@ class TagRepository implements TagRepositoryInterface
          * @var array
          */
         $data = $this->serveData($request);
-
-        /**
-         * Database query statement that stores data.
-         */
+        // dd($data);
         Tag::create($data);
+        // if (LaravelLocalization::getCurrentLocaleDirection() == 'rtl') {
+        //     $data = Arr::except($data, 'slug');
+        //     /**
+        //      * Database query statement that stores data.
+        //      */
+        //     Tag::create($data);
+        // } else {
+        //     /**
+        //      * Database query statement that stores data.
+        //      */
+        //     Tag::create($data);
+        // }
     }
 
     /**
@@ -70,8 +81,7 @@ class TagRepository implements TagRepositoryInterface
             app()->getLocale() => [
                 'name' => $request->input('tag_name')
             ],
-            'slug' => $request->input('tag_stat'),
-            // 'image'  => $request->file('tag_imag'),
+            'slug' => $request->input('tag_name'),
         ];
     }
 

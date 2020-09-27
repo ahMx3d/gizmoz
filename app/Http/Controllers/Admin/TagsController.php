@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Helpers\Admin\Utilities;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\TagRequest;
 use App\Repositories\Tags\TagRepositoryInterface;
 
 class TagsController extends Controller
@@ -46,7 +47,6 @@ class TagsController extends Controller
                 compact('tags')
             );
         } catch (\Throwable $th) {
-            return $th;
             // redirect to dashboard with error message.
             return Utilities::redirectWithMSG(
                 'admin.dashboard',
@@ -63,7 +63,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -72,9 +72,26 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
-        //
+        try {
+            //Store tags into database.
+            $this->tagRepository->tagStore($request);
+
+            // Redirect to tags index table with success message.
+            return Utilities::redirectWithMSG(
+                'tags.index',
+                'success',
+                'store_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect to tags create view with error message.
+            return Utilities::redirectWithMSG(
+                'tags.create',
+                'error',
+                'catch_error'
+            );
+        }
     }
 
     /**

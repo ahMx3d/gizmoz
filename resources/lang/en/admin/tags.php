@@ -82,6 +82,7 @@ return [
 
     ############################# START BRANDS FORM PLACEHOLDERS ########################
     'tag_name_placeholder' => ucfirst('enter tag name'),
+    'tag_slug_placeholder' => ucfirst('enter tag slug'),
     ############################# END BRANDS FORM PLACEHOLDERS ##########################
 
     ############################ START BRANDS FORM ACTIONS #########################

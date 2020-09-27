@@ -82,6 +82,7 @@ return [
 
     ############################# START BRANDS FORM PLACEHOLDERS ########################
     'tag_name_placeholder' => 'ادخل اسم بطاقة الشعار',
+    'tag_slug_placeholder' => 'ادخل الإسم الأمثل لبطاقة الشعار',
     ############################# END BRANDS FORM PLACEHOLDERS ##########################
 
     ############################ START BRANDS FORM ACTIONS #########################

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use App\QueryFilters\Tag\Name;
 use App\QueryFilters\Tag\Order;
 use Illuminate\Pipeline\Pipeline;
@@ -84,5 +85,18 @@ class Tag extends Model
             Name::class,
             Order::class,
         ])->thenReturn()->paginate(PAGINATION_COUNT);
+    }
+
+    /**
+     * Slug mutator
+     *
+     * @param string $val
+     * @return void
+     */
+    public function setSlugAttribute($val)
+    {
+        if (isset($val)) {
+            $this->attributes['slug'] = Str::slug($val);
+        }
     }
 }
