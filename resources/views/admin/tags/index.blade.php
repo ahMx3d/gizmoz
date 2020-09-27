@@ -50,11 +50,12 @@
                                 <table class="table table-responsive display nowrap table-striped table-bordered{{--  scroll-horizontal --}}">
                                         <thead>
                                         <tr>
-                                            <th class="text-center">#</th>
+                                            {{-- <th class="text-center">#</th> --}}
                                             <th class="text-center">{{ __('admin/tags.th_name') }}</th>
                                             <th class="text-center">{{ __('admin/tags.th_slug') }}</th>
                                             <th class="text-center">{{ __('admin/tags.th_actions') }}</th>
                                             <th class="text-center">{{ __('admin/tags.th_updated_at') }}</th>
+                                            <th class="text-center">{{ __('admin/tags.th_created_at') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -63,7 +64,7 @@
                                             @foreach($tags as $tag)
 
                                                 <tr>
-                                                    <td class="text-center">{{ $tag->id }}</td>
+                                                    {{-- <td class="text-center">{{ $tag->id }}</td> --}}
                                                     <td class="text-center">{{ $tag->name }}</td>
                                                     <td class="text-center">{{ $tag->slug }}</td>
                                                     <td class="text-center">
@@ -78,12 +79,12 @@
 
                                                                 <span>{{ __('admin/tags.td_edit') }}</span>
                                                             </a>
-                                                            {{-- <a
+                                                            <a
                                                                 href="{{ route('tags.show', $tag->id) }}"
                                                                 class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
 
                                                                 <span>{{ __('admin/tags.td_show') }}</span>
-                                                            </a> --}}
+                                                            </a>
                                                             <form
                                                                 action="{{ route('tags.destroy', $tag->id) }}"
                                                                 method="POST">
@@ -99,6 +100,7 @@
                                                         </div>
                                                     </td>
                                                     <td>{{ $tag->updated_at->diffForHumans() }}</td>
+                                                    <td>{{ $tag->created_at->diffForHumans() }}</td>
                                                 </tr>
                                             @endforeach
                                         @endisset

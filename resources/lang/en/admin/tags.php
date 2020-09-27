@@ -53,6 +53,7 @@ return [
     // 'th_status'     => ucfirst('status'),
     'th_actions'    => ucfirst('actions'),
     'th_updated_at' => ucfirst('update date'),
+    'th_created_at' => ucfirst('create date'),
     ############################# END BRANDS TABLE HEADERS ##########################
 
     ############################# START BRANDS TABLE DATA ########################

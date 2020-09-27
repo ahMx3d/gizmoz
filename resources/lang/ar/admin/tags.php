@@ -53,6 +53,7 @@ return [
     // 'th_status'     => 'الحالة',
     'th_actions'    => 'الإجراءات',
     'th_updated_at' => 'تاريخ التحديث',
+    'th_created_at' => 'تاريخ الاضافه',
     ############################# END BRANDS TABLE HEADERS ##########################
 
     ############################# START BRANDS TABLE DATA ########################

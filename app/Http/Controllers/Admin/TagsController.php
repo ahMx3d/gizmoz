@@ -197,6 +197,37 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            /**
+             * Tag row.
+             *
+             * @var object
+             */
+            $tag = $this->tagRepository->findTagRowById($id);
+
+            // Redirect with error message to the tags index table.
+            if (!$tag) return Utilities::redirectWithMSG(
+                'tags.index',
+                'error',
+                'db_error'
+            );
+
+            // Delete tags from the database.
+            $this->tagRepository->tagDelete($tag);
+
+            // Redirect with success message to the tags index table.
+            return Utilities::redirectWithMSG(
+                'tags.index',
+                'success',
+                'delete_mess'
+            );
+        } catch (\Throwable $th) {
+            // Redirect with error message to the tags index table.
+            return Utilities::redirectWithMSG(
+                'tags.index',
+                'error',
+                'catch_error'
+            );
+        }
     }
 }
