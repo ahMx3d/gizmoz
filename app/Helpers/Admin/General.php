@@ -15,13 +15,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /**
  * The pagination constant.
- * 
+ *
 */
 define('PAGINATION_COUNT', 15);
 
 /**
  * Get css or css-rtl folder based on language direction.
- * 
+ *
  * @return foldername
  */
 function getCSSDirection()
@@ -33,7 +33,7 @@ function getCSSDirection()
 
 /**
  * Get style or style-rtl file based on language direction.
- * 
+ *
  * @return filename
  */
 function getStyleDirection()
@@ -41,4 +41,16 @@ function getStyleDirection()
     return LaravelLocalization::getCurrentLocaleDirection() == 'ltr'? 'style': 'style-rtl';
 
     // return app()->getLocale() === 'en'? 'style': 'style-rtl';
+}
+
+/**
+ * Get Plugin or Plugin-rtl file based on language direction.
+ *
+ * @return filename
+ */
+function getPluginDirection()
+{
+    return LaravelLocalization::getCurrentLocaleDirection() == 'ltr'? 'plugin': 'plugin-rtl';
+
+    // return app()->getLocale() === 'en'? 'plugin': 'plugin-rtl';
 }

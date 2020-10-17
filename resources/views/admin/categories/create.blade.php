@@ -58,6 +58,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <form
+                                            id="form"
                                             class="form"
                                             action="{{route('categories.store')}}"
                                             method="POST"
@@ -74,7 +75,7 @@
                                                 <div class="row">
 
                                                     <div class="col-md-8">
-                                                        <div class="form-group">
+                                                        <div class="form-group jq-va">
                                                             <label for="cate_name">{{ __('admin/cates.cate_name') }}</label>
                                                             <input
                                                                 type="text"
@@ -190,21 +191,33 @@
                                                     value="" />
                                                 <div class="row">
                                                     <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <label for="cate_main">
+                                                        <div class="form-group jq-va">
+                                                            <label for="cate_plug">
                                                                 {{ __('admin/cates.cate_main') }}
                                                             </label>
-                                                            <select
+                                                            <input
+                                                                type="text"
+                                                                value="{{old('cate_plug')}}"
+                                                                id="cate_plug"
+                                                                name="cate_plug"
+                                                                data-id=""
+                                                                class="form-control"
+                                                                placeholder="{{ __('admin/cates.cate_main_placeholder') }}" />
+                                                            <input
+                                                                type="hidden"
+                                                                value="{{old('cate_main')}}"
+                                                                id="cate_main"
+                                                                name="cate_main"
+                                                                class="form-control" />
+
+                                                            {{-- <select
                                                                 id="cate_main"
                                                                 name="cate_main"
                                                                 class="custom-select custom-select-lg">
 
-                                                                {{-- <optgroup disabled
-                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
                                                                 <option
                                                                     label="{{ __('admin/cates.cate_main_placeholder') }}"
                                                                     selected
-                                                                    {{-- disabled --}}
                                                                     value="0">
                                                                     {{ __('admin/cates.cate_main_placeholder') }}
                                                                 </option>
@@ -213,8 +226,12 @@
                                                                                 {{$mainCate->name}}
                                                                             </option>
                                                                         @endforeach
+                                                            </select> --}}
+                                                            <!-- SELECT OPTIONS GROUP -->
+                                                                {{-- <optgroup disabled
+                                                                label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
                                                                 {{-- </optgroup> --}}
-                                                            </select>
+                                                            <!-- /SELECT OPTIONS GROUP -->
 
                                                             @error('cate_main')
                                                                 <span class="text-danger">{{$message}}</span>
@@ -256,4 +273,28 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+        // Database all categories.
+        cates = JSON.parse('<?php echo $mainCatesForSub; ?>');
+
+        jQuery(document).ready(function($) {
+
+            // CombTree Nested Selection Plugin
+            singleSelection = $('#cate_plug').comboTree({
+                source    : cates,
+                isMultiple: false,
+                collapse  : true,
+                selected: [$('#cate_main').val()]
+            });
+
+            $(document).on('change', '#cate_plug', function() {
+                selectedIds = singleSelection.getSelectedIds();
+                $('#cate_main').val(selectedIds);
+            });
+        });
+
+</script>
 @endsection

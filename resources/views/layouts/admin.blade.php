@@ -8,7 +8,7 @@
 
     <head>
         <meta
-            http-equiv="Content-Type" 
+            http-equiv="Content-Type"
             content="text/html; charset=UTF-8">
         <meta
             http-equiv="X-UA-Compatible"
@@ -27,6 +27,23 @@
             content="PIXINVENT">
 
         <title>@yield('title')</title>
+
+
+        <!-- START NESTED SELECT INPUT COMBO TREE PLUGIN CSS-->
+        <link
+            rel="stylesheet"
+            href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+            type="text/css">
+        <link
+            rel="stylesheet"
+            {{-- href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css"> --}}
+        <link
+            rel="stylesheet"
+            href="https://cdn.materialdesignicons.com/5.0.45/css/materialdesignicons.min.css">
+        <link
+            rel="stylesheet"
+            href="{{ asset('assets/plugins/comboTreePlugin/css/' .getStyleDirection(). '.css') }}">
+        <!-- END NESTED SELECT INPUT COMBO TREE PLUGIN CSS-->
 
         <link
             rel="apple-touch-icon"
@@ -146,7 +163,7 @@
             type="text/css"
             href="{{asset('assets/admin/' .getCSSDirection(). '/' .getStyleDirection(). '.css')}}">
         <!-- END CUSTOM CSS-->
-        
+
         @notify_css
         @yield('style')
 
@@ -159,6 +176,7 @@
                 font-family: 'Cairo', sans-serif;
             }
         </style>
+        <!-- END START CUSTOM CSS-->
 
     </head>
     <body
@@ -168,16 +186,16 @@
         data-col="2-columns">
 
         <!-- FIXED TOP-->
-        
+
         {{-- INCLUDE HEADER --}}
         @include('admin.includes.header')
-        
+
         {{-- INCLUDE SIDE-BAR --}}
         @include('admin.includes.side-bar')
 
         {{-- DASHBOARD VIEW --}}
         @yield('content')
-        
+
         {{-- INCLUDE FOOTER --}}
         @include('admin.includes.footer')
 
@@ -203,16 +221,16 @@
         <script
             src="{{asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js')}}"
             type="text/javascript"></script>
-        <script 
+        <script
             src="{{asset('assets/admin/vendors/js/forms/toggle/switchery.min.js')}}"
             type="text/javascript"></script>
-        <script 
+        <script
             src="{{asset('assets/admin/js/scripts/forms/switch.js')}}"
             type="text/javascript"></script>
-        <script 
+        <script
             src="{{asset('assets/admin/vendors/js/forms/select/select2.full.min.js')}}"
             type="text/javascript"></script>
-        <script 
+        <script
             src="{{asset('assets/admin/js/scripts/forms/select/form-select2.js')}}"
             type="text/javascript"></script>
 
@@ -317,6 +335,13 @@
                 meridians: true,setCurrentTime: false
             });
         </script>
+
+        <!-- START NESTED SELECT INPUT COMBO TREE PLUGIN JS-->
+        {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
+        <script
+            src="{{ asset('assets/plugins/comboTreePlugin/js/' .getPluginDirection(). '.js') }}"
+            type="text/javascript"></script>
+        <!-- END NESTED SELECT INPUT COMBO TREE PLUGIN JS-->
 
         @yield('script')
 

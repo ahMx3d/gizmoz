@@ -42,6 +42,26 @@ class Cate extends Model
     protected $translatedAttributes = ['name'];
 
     /**
+     * The attributes appended for the comboTree select box to be translated.
+     * Set the title key of values.
+     * @author Ahmed Salah
+     *
+     * @var array
+     */
+    protected $appends = ['title'];
+
+    /**
+     * Set value for The appended title attribute
+     *
+     * @return string
+     */
+    public function getTitleAttribute()
+    {
+        $this->attributes['title'] = $this->name;
+        return $this->attributes['title'];
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -161,6 +181,7 @@ class Cate extends Model
     public function mainCate()
     {
         return $this->belongsTo(self::class, 'parent_id', 'id');
+        // return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
     /**
@@ -170,7 +191,21 @@ class Cate extends Model
      */
     public function subcates()
     {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        // return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent_id', 'id')->with('subcates');
+    }
+
+    /**
+     * Model's subcategories relationships.
+     * Used for the comboTree select box plugin.
+     * @author Ahmed Salah
+     *
+     * @return array
+     */
+    public function subs()
+    {
+        // return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent_id', 'id')->with('subs');
     }
 
     /**
@@ -197,7 +232,7 @@ class Cate extends Model
      *
      * @return object
      */
-    public static function mainCatesCreated()
+    public static function catesTree()
     {
         return app(
             Pipeline::class

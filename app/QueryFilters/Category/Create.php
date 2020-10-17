@@ -33,7 +33,7 @@ class Create extends Filter
         $return = $builder->when( // Filter value equals "sub".
             $requestKey == 'sub',
             function ($query) {
-                return $query->descCates()->parentCate();
+                return $query->parentCate()->descCates()->with('subs');
             }
         );
 

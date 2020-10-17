@@ -70,18 +70,17 @@ class CategoriesController extends Controller
     {
         try {
             /**
-             * All filtered main categories pipeline in a descending order.
+             * All filtered categories pipeline in a descending order.
              *
              * @var object
              */
-            $mainCatesForSub = $this->categoryRepository->mainCatesToCreateSubcate();
+            $mainCatesForSub = $this->categoryRepository->nestedCates();
 
             return view(
                 'admin.categories.create',
                 compact('mainCatesForSub')
             );
         } catch (\Throwable $th) {
-
             // Redirect with error message to the categories index table.
             return Utilities::redirectWithMSG(
                 'categories.index',

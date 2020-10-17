@@ -40,12 +40,12 @@ interface CategoryRepositoryInterface
     public function allCatesDescWithFilters();
 
     /**
-     * Pipeline filtered main categories in descending order.
+     * Pipeline filtered categories in descending order.
      * Used for create method.
      *
      * @return mixed
      */
-    public function mainCatesToCreateSubcate();
+    public function nestedCates();
 
     /**
      * Pipeline filtered main categories in descending order.
