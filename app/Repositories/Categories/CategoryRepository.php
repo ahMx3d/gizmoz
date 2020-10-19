@@ -4,6 +4,7 @@ namespace App\Repositories\Categories;
 
 use App\Helpers\Admin\Utilities;
 use App\Models\Cate;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class CategoryRepository implements CategoryRepositoryInterface
@@ -67,12 +68,34 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function nestedCates()
     {
         // return Cate::catesTree();
-        return Cate::catesTree()->filter(function($q) {
-            if($q->subs->isEmpty()){
-                unset($q->subs);
+        // return Cate::catesTree()->filter(function($q) {
+        //     if($q->subs->isEmpty()){
+        //         unset($q->subs);
+        //     }
+        //     return $q;
+        // });
+
+        ################################
+
+        $collection = Cate::catesTree();       // The query collection.
+        $array      = $collection->toArray();  // The query array conversion.
+        $flattened  = Arr::dot($array);        // Flatten the multidimensional
+        foreach ($flattened as $key => $subs) {
+            if (empty($subs)) {                 // Get rid of the subs empty array.
+                Arr::forget($flattened, $key);
             }
-            return $q;
-        });
+        }
+
+        // new array wrapper.
+        $newArr = array();
+        foreach ($flattened as $key => $value) {
+            // Wrap the query values.
+            Arr::set($newArr, $key, $value);
+        }
+
+        // query wrapper collection.
+        $newCollection = collect($newArr);
+        return $newCollection;
     }
 
     /**
