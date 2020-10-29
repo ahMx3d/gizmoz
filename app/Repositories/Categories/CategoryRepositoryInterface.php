@@ -51,9 +51,10 @@ interface CategoryRepositoryInterface
      * Pipeline filtered main categories in descending order.
      * Used for edit method.
      *
-     * @return mixed
+     * @param object $cate
+     * @return object
      */
-    public function mainCatesToEditSubcate();
+    public function mainCatesToEditSubcate($cate);
 
     /**
      * Store categories.
@@ -62,6 +63,17 @@ interface CategoryRepositoryInterface
      * @return void
      */
     public function cateStore($request);
+
+    /**
+     * Validate that request main category id isn't neither the category of action nor its nested categories.
+     *
+     * @author Ahmed Salah
+     * 
+     * @param int $id
+     * @param int $mainCateId
+     * @return mixed
+     */
+    public function validateSubsUpdate($id, $mainCateId);
 
     /**
      * Update categories.

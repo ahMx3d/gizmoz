@@ -102,11 +102,48 @@ class CategoryRepository implements CategoryRepositoryInterface
      * Pipeline filtered main categories in descending order.
      * Used for edit method.
      *
-     * @return mixed
+     * @param object $cate
+     * @return object
      */
-    public function mainCatesToEditSubcate()
+    public function mainCatesToEditSubcate($cate)
     {
-        return Cate::mainCatesForEdit();
+        // return Cate::mainCatesForEdit();
+
+        if ($cate->parent_id != null) {              // nested categories if the current category is sub.
+            $id         = $cate->id;                 // subcategory's id.
+            $collection = Cate::mainCatesForEdit();  // The nested categories query collection.
+            $array      = $collection->toArray();    // The query array conversion.
+            $flattened  = Arr::dot($array);          // Flatten the multidimensional.
+            $newArr     = array();
+            foreach ($flattened as $key => $value) {
+                if (empty($value) || Str::contains($key, ['translations', 'name', 'created_at', 'updated_at'])) {
+                    unset($key);  // delete translations, name, created_at, updated_at, and empty subs.
+                } elseif (Str::contains($key, 'subs') && Str::contains($key, 'id') && $value == $id) {
+                    $editingKey = Str::beforeLast($key, '.');  // key of editing category array.
+                    unset($key);  // delete id of edit action.
+                } else {
+                    if (isset($editingKey) && Str::of($key)->startsWith($editingKey)) {
+                        $editingParentKey = Str::beforeLast($editingKey, '.');  // subs array multidimensional key.
+                        unset($key);  // delete rest of data for the current category.
+                    } else {
+                        Arr::set($newArr, $key, $value);  // new multidimensional array of the required data for editing.
+                    }
+                }
+            }
+
+            $forgottenSiblings = Arr::pull($newArr, $editingParentKey); // siblings of the current array.
+            if (empty($forgottenSiblings)) {
+                unset($newArr[$editingParentKey]);  // delete siblings array if empty.
+            } else {
+                $forgottenSiblings = array_values($forgottenSiblings);  // treat the index of siblings keys.
+                data_set($newArr, $editingParentKey, $forgottenSiblings);  // insert the new treated siblings keys.
+            }
+
+            $newCollection = collect($newArr);  // collect data for the editing view.
+            return $newCollection;
+        } else {
+            return collect([]);
+        }
     }
 
     /**
@@ -128,6 +165,45 @@ class CategoryRepository implements CategoryRepositoryInterface
          * Database query statement that stores data.
          */
         Cate::create($data);
+    }
+
+    /**
+     * Validate that request main category id isn't neither the category of action nor its nested categories.
+     *
+     * @author Ahmed Salah
+     * 
+     * @param int $id
+     * @param int $mainCateId
+     * @return mixed
+     */
+    public function validateSubsUpdate($id, $mainCateId)
+    {
+        if ($id == $mainCateId) return false;   // return false if current id equals the main category id.
+        $cate = Cate::find($id);                // category of cation.
+        if (!$cate) return null;                // return null if the id dsnt exist in db.
+        if ($mainCateId == null) {              // directly return category if the current id is main category.
+            return $cate;
+        } else {
+            $cateSubs  = $cate->subs->toArray();  // nested subcategories array of the current category.
+            $flattened = Arr::dot($cateSubs);     // flatten nested multidimensional subcategories array.
+            $subsIds   = [];                      // all subcategories of the current category.
+            
+            foreach ($flattened as $key => $value) {    // loop to come up with only nested subcategories ids.
+                if (empty($value) || Str::contains($key, ['translations', 'name', 'title', 'created_at', 'updated_at'])) {
+                    unset($key);
+                } else {
+                    Arr::set($subsIds, $key, $value);
+                }
+            }
+
+            // check if the selected main category equals to one of the nested subcategories.
+            $hasMainCateId = collect(Arr::flatten($subsIds))->search($mainCateId);
+            /*
+            ** return true if main category id equals one of the nested subcategories id.
+            ** return current category object to be edited if main category id dsnt equal any nested subcategories id.
+            */
+            return ((is_int($hasMainCateId)) ? true : $cate);
+        }
     }
 
     /**

@@ -126,6 +126,11 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
+        return Utilities::redirectWithMSG(
+            'categories.index',
+            'error',
+            'catch_error'
+        );
         try {
             /**
              * Category row.
@@ -183,7 +188,7 @@ class CategoriesController extends Controller
              *
              * @var object
              */
-            $mainCatesForSub = $this->categoryRepository->mainCatesToEditSubcate();
+            $mainCatesForSub = $this->categoryRepository->mainCatesToEditSubcate($cate);
 
             return view(
                 'admin.categories.edit',
@@ -213,38 +218,48 @@ class CategoriesController extends Controller
     {
         try {
             /**
-             * Category row.
-             *
-             * @var object
+             * Validate main category of subcategory.
+             * 
+             * @var mixed
              */
-            $cate = $this->categoryRepository->findCateRowById($id);
+            $cate = $this->categoryRepository->validateSubsUpdate($id, $request->input('cate_main'));
+            
+            if (is_bool($cate)) {   // main category id equals subcategory id or its nested subs.
+                return Utilities::redirectWithMSG(  // Redirect with error message to the categories index table.
+                    'categories.index',
+                    'error',
+                    'catch_error'
+                );
+            } elseif ($cate === null) { // category id dsnt exist in db.
+                return Utilities::redirectWithMSG(  // Redirect with error message to the categories index table.
+                    'categories.index',
+                    'error',
+                    'db_error'
+                );
+            } elseif (is_object($cate)) {   // everything is ok u r safe.
+                $this->categoryRepository->cateUpdate(  // Update categories into the database.
+                    $cate,
+                    $request
+                );
 
-            // Redirect with error message to the categories index table.
-            if (!$cate) return Utilities::redirectWithMSG(
-                'categories.index',
-                'error',
-                'db_error'
-            );
-
-            // Update categories into the database.
-            $this->categoryRepository->cateUpdate(
-                $cate,
-                $request
-            );
-
-            // Redirect with success message to the categories index table.
-            return Utilities::redirectWithMSG(
-                'categories.index',
-                'success',
-                'update_mess'
-            );
+                return Utilities::redirectWithMSG(  // Redirect with success message to the categories index table.
+                    'categories.index',
+                    'success',
+                    'update_mess'
+                );
+            } else {    // any unexpected error.
+                return Utilities::redirectWithMSG(  // Redirect with error message to the categories index table.
+                    'categories.index',
+                    'error',
+                    'catch_error'
+                );
+            }
         } catch (\Throwable $th) {
             // Redirect with error message to the categories edit view.
             return Utilities::redirectWithMSG(
-                'categories.edit',
+                'categories.index',
                 'error',
-                'catch_error',
-                $id
+                'catch_error'
             );
         }
     }

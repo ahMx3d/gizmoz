@@ -33,7 +33,8 @@ class Edit extends Filter
         $return = $builder->when( // Filter value equals "sub".
             $requestKey == 'sub',
             function ($query) {
-                return $query->descCates()->parentCate();
+                // return $query->descCates()->parentCate();
+                return $query->with('subs')->parentCate()->descCates();
             }
         );
 

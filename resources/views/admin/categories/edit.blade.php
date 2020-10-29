@@ -188,44 +188,57 @@
                                                     type="hidden"
                                                     name="sub"
                                                     value="" />
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <label for="cate_main">
-                                                                {{ __('admin/cates.cate_main') }}
-                                                            </label>
-                                                            <select
-                                                                id="cate_main"
-                                                                name="cate_main"
-                                                                class="custom-select custom-select-lg">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group jq-va">
+                                                                <label for="cate_plug">
+                                                                    {{ __('admin/cates.cate_main') }}
+                                                                </label>
+                                                                <input
+                                                                    type="text"
+                                                                    value="{{old('cate_plug')}}"
+                                                                    id="cate_plug"
+                                                                    name="cate_plug"
+                                                                    data-id=""
+                                                                    class="form-control"
+                                                                    placeholder="{{ __('admin/cates.cate_main_placeholder') }}" />
+                                                                <input
+                                                                    type="hidden"
+                                                                    value="{{old('cate_main', $cate->parent_id)}}"
+                                                                    id="cate_main"
+                                                                    name="cate_main"
+                                                                    class="form-control" />
 
-                                                                {{-- <optgroup disabled
-                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
-                                                                <option
-                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"
-                                                                    disabled
-                                                                    value="0">
-                                                                    {{ __('admin/cates.cate_main_placeholder') }}
-                                                                </option>
-                                                                @foreach ($mainCatesForSub as $mainCate)
+                                                                {{-- <select
+                                                                    id="cate_main"
+                                                                    name="cate_main"
+                                                                    class="custom-select custom-select-lg">
+
                                                                     <option
-                                                                        @if (old('cate_main', $cate->parent_id) == $mainCate->id)
+                                                                        label="{{ __('admin/cates.cate_main_placeholder') }}"
                                                                         selected
-                                                                        @endif
-                                                                        value="{{$mainCate->id}}">
-                                                                        {{$mainCate->name}}
+                                                                        value="0">
+                                                                        {{ __('admin/cates.cate_main_placeholder') }}
                                                                     </option>
-                                                                @endforeach
-                                                                {{-- </optgroup> --}}
-                                                            </select>
+                                                                            @foreach ($mainCatesForSub as $mainCate)
+                                                                                <option value="{{$mainCate->id}}">
+                                                                                    {{$mainCate->name}}
+                                                                                </option>
+                                                                            @endforeach
+                                                                </select> --}}
+                                                                <!-- SELECT OPTIONS GROUP -->
+                                                                    {{-- <optgroup disabled
+                                                                    label="{{ __('admin/cates.cate_main_placeholder') }}"> --}}
+                                                                    {{-- </optgroup> --}}
+                                                                <!-- /SELECT OPTIONS GROUP -->
 
-                                                            @error('cate_main')
-                                                                <span class="text-danger">{{$message}}</span>
-                                                            @enderror
+                                                                @error('cate_main')
+                                                                    <span class="text-danger">{{$message}}</span>
+                                                                @enderror
 
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 @endif
                                             </div>
 
@@ -259,4 +272,62 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+        // Database all categories.
+        cates = JSON.parse('<?php echo $mainCatesForSub; ?>');
+        // cateOfAction = '<?php echo $cate->id; ?>';
+
+        jQuery(document).ready(function($) {
+
+            if (cates.length != 0) {
+                // CombTree Nested Selection Plugin
+                singleSelection = $('#cate_plug').comboTree({
+                    source    : cates,
+                    isMultiple: false,
+                    collapse  : true,
+                    selected: [$('#cate_main').val()]
+                });
+
+                $(document).on('change', '#cate_plug', function() {
+                    selectedIds = singleSelection.getSelectedIds();
+                    $('#cate_main').val(selectedIds);
+                });
+            
+                //####################################
+                // $('.comboTreeItemTitle').on(
+                //     'mouseenter',
+                //     function () {
+                //         parentCateToBeAssigned = $(this).attr('data-id');
+                //         if (cateOfAction == parentCateToBeAssigned) {
+                //             $(this).css({
+                //                 'pointer-events': 'none',
+                //                 'background-color': 'red',
+                //                 'color': 'white',
+                //                 'font-weight': 'bold',
+                //                 'opacity': '0.7',
+                //             });
+                //         }
+                //     }
+                // );
+                // $(":submit").on(
+                //     'click',
+                //     function (e) {
+                //         parentCateToBeAssigned = $('#cate_main').val();
+                //         if (cateOfAction == parentCateToBeAssigned) {
+                //             $('.comboTreeInputWrapper').css({
+                //                 'border-radius': '5px',
+                //                 'border': '1px solid red',
+                //             });
+                //             e.preventDefault();
+                //         }
+                //     }
+                // );
+                //####################################
+            }
+        });
+
+</script>
 @endsection

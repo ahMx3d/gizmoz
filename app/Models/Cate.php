@@ -181,7 +181,6 @@ class Cate extends Model
     public function mainCate()
     {
         return $this->belongsTo(self::class, 'parent_id', 'id');
-        // return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
     /**
@@ -191,7 +190,6 @@ class Cate extends Model
      */
     public function subcates()
     {
-        // return $this->hasMany(self::class, 'parent_id', 'id');
         return $this->hasMany(self::class, 'parent_id', 'id')->with('subcates');
     }
 
@@ -204,7 +202,6 @@ class Cate extends Model
      */
     public function subs()
     {
-        // return $this->hasMany(self::class, 'parent_id', 'id');
         return $this->hasMany(self::class, 'parent_id', 'id')->with('subs');
     }
 
